@@ -16,7 +16,8 @@ export default class Navbar extends React.Component {
                     > Recipe Blog
                 </NavLink>
 
-                {/* only display if user is logged in */}
+
+               
                 <NavLink
                     to='/profile'
                     exact
@@ -30,6 +31,24 @@ export default class Navbar extends React.Component {
                     style={link}
                     > Add a Recipe!
                 </NavLink>
+
+                <NavLink
+                    to='/signup'
+                    exact
+                    style={link}
+                    > Sign Up
+                </NavLink>
+
+                <NavLink
+                    to='/login'
+                    exact
+                    style={link}
+                    > Login
+                </NavLink>
+
+
+
+                
 
 
 
