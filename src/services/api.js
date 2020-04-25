@@ -26,16 +26,16 @@ const login = data => {
     });
   };
 
-  const createUser = data => {
-    return fetch(`${API_ROOT}/signup`, {
+  const createUser = (data) => {
+    return fetch(`${API_ROOT}/sign_up`, {
       method: "POST",
       headers: {      
         "Content-Type": "application/json",
         Accept: "application/json"
         },
       body: JSON.stringify({user: data})
-    }).then(res => res.json());
-  };
+    }).then(res => { return res.json()});
+};
 
   export const api = {
       auth: {
