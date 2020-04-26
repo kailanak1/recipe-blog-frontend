@@ -23,7 +23,9 @@ export default class App extends React.Component {
     super();
     this.state = {
       auth: {
-        user: {}
+        user: {},
+        errors: false 
+     
       }
     };
   }
@@ -31,7 +33,8 @@ export default class App extends React.Component {
     let token = localStorage.getItem("token");
     if (token) {
       api.auth.getCurrentUser().then(user => {
-        this.setState({ auth: user });
+        const updatedState = { user };
+        this.setState({ auth: updatedState });
       });
     }
   }
@@ -42,14 +45,13 @@ export default class App extends React.Component {
       password: event.target.password.value,
     }
     api.auth.createUser(newUser).then(res => {
-      console.log(res)
-       if (!!res.user.id){
-          this.login(res);
-          this.setState({errors: false})
-      } else {
-          this.setState({errors: true})
-      }
-  })
+      if (res.error){
+       this.setState({errors: true})
+     } else {    
+       this.login(res);
+       this.setState({errors: false})
+     }
+   })
   }
 
 

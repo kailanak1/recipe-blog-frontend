@@ -2,15 +2,56 @@ import React from 'react'
 
 
 class AddRecipeForm extends React.Component{
+    state = {
+        ingredients: [],
+        steps: []
+    }
 
+    addIngredient(e){
+        e.preventDefault()
+        this.setState({ingredients: [...this.state.ingredients, ""]
+        })
+    }
+
+    handleChange = (e, index) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })   
+    }
+
+   
 
 
     render(){
+        console.log(this.state)
         return (
-            <h1>This is the add recipe form</h1>
+            <div>
+            <h1>Add a Recipe!</h1>
+            <form id="recipe-form"> 
+                <label>Ingredients</label>
+                {
+                    this.state.ingredients.map((ingredient, index) => {
+                        return( 
+                            <div key={index}>
+                                <input onChange={(e, index) => this.handleChange(e)} value={this.state.ingredient}/>
+
+                               
+                            </div>
+                        )
+                    })
+                }
+                <br></br>
+                <button onClick={(e)=> this.addIngredient(e)}>Add Ingridient</button>
+                <br></br>
+              
+                
+
+                <button>Publish Recipe</button>
+            </form>
+            </div>
         )
     }
-
+    
 }
 
 export default AddRecipeForm 

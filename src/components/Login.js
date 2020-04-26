@@ -18,17 +18,22 @@ class Login extends React.Component{
 
     handleSubmit = event => {
         event.preventDefault()
-        console.log("loggin in")
+        console.log("logging in")
         api.auth.login(this.state.fields).then(res => {
             if (!res.errors){
                 this.props.onLogin(res);
-                this.props.history.push('/calendar')
+                this.props.history.push('/landing')
             } else {
                 this.setState({errors: true})
             }
         })
+    }
 
-
+    handleChange = (event) => {
+        const newState = {...this.state.fields, [event.target.name]: event.target.value}
+        this.setState({
+                fields: newState
+        })      
     }
 
 
@@ -36,7 +41,7 @@ class Login extends React.Component{
     render(){
         return (
             <div id="signup">
-            {/* {this.props.appState.errors ? <h3 style={{color: 'white'}}>Error! This username has already been taken. Please try again.</h3> : <h3>Enter the information below to create an account.</h3>} */}
+            
             <form id="event-form" onSubmit={this.handleSubmit}>
             <h1>Login to your account</h1>
                 <label>Username</label>

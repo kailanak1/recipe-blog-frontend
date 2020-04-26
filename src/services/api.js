@@ -15,7 +15,7 @@ const login = data => {
       method: "POST",
       headers: headers(),
       body: JSON.stringify( {auth: data})
-    }).then(res => res.json());
+    }).then(res => {return res.json()});
   };
   
   const getCurrentUser = () => {

@@ -46,6 +46,7 @@ class Signup extends React.Component{
         return (
             <div id="signup">
                 <h1>Sign up for an account</h1>
+                {this.props.appState.errors ? <h3 style={{color: 'white'}}>Someone took this username already. Please come up with a different one.</h3> : <h3>Enter the information below to create an account.</h3>}
                 <form id="signup-form" onSubmit={this.handleSubmit}>
                     <label>Username</label>
                     <br></br>
