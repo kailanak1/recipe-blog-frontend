@@ -22,7 +22,7 @@ class RecipeList extends React.Component{
 
     recipeMapper = () => {
         return this.state.recipes.map(recipe => {
-            console.log(recipe.name)
+           
             return (
                 <Fragment>
                     <br></br>
@@ -32,11 +32,11 @@ class RecipeList extends React.Component{
                         >
                             <div className="content">
                                 <div className="header">
-                                    <span>{recipe.title}</span>
+                                    <span stye={{fontWeight: 'bolder'}}>{recipe.title}</span>
                                     <br></br>
                                 </div>
                                 <div className="meta text-wrap">
-                                    {recipe.summary}
+                                    {!!recipe.summary ? recipe.summary : "No summary given"}
                                 </div>
                             </div>
 

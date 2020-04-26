@@ -39,7 +39,6 @@ export default class App extends React.Component {
         this.setState({ auth: updatedState });
       });
     }
-    //get recipes
   }
 
   createUser = (event) => {
@@ -76,6 +75,16 @@ logout = () => {
     errors: null
   });
 };
+
+
+addEvent = (event) => {
+  let newRecipe = {
+    title: event.target.title.value, 
+    ingredients: event.ingredients.value, 
+    steps: event.target.steps.value, 
+    tags: event.target.tags.value
+  }
+}
 
 
   render(){

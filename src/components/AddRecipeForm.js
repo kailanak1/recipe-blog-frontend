@@ -3,14 +3,21 @@ import React from 'react'
 
 class AddRecipeForm extends React.Component{
     state = {
+        title:"",
         ingredients: [],
-        steps: []
+        steps: [],
+        tags: []
     }
 
     addIngredient(e){
         e.preventDefault()
         this.setState({ingredients: [...this.state.ingredients, ""]
         })
+    }
+
+    addSteps(e){
+        e.preventDefault()
+        this.setState({steps: [...this.state.steps, ""]})
     }
 
     // removeIngredient(e, index){
@@ -35,6 +42,10 @@ class AddRecipeForm extends React.Component{
             <div>
             <h1>Add a Recipe!</h1>
             <form id="recipe-form"> 
+                 <label>Title</label>
+                 <br></br>
+                 <input placeholder="Title"></input>
+                 <br></br>
                 <label>Ingredients</label>
                 {
                     this.state.ingredients.map((ingredient, index) => {
@@ -54,8 +65,14 @@ class AddRecipeForm extends React.Component{
                 <button onClick={(e)=> this.addIngredient(e)}>Add Ingredient</button>
                 <br></br>
               
-                
+                <label>Steps</label>
+                <br></br>
+                <button onClick={(e)=> this.addSteps(e)}>Add Steps</button>
+                <br></br>
 
+                <label>Tags</label>
+                <br></br>
+                
                 <button>Publish Recipe</button>
             </form>
             </div>
