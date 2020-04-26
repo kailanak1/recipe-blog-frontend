@@ -13,9 +13,16 @@ class AddRecipeForm extends React.Component{
         })
     }
 
+    // removeIngredient(e, index){
+    //     e.preventDefault()
+    //     this.state.ingredients.splice(index)
+    //     this.setState({ingredients: this.state.ingredients})
+    // }
+
     handleChange = (e, index) => {
         this.setState({
             [e.target.name]: e.target.value
+        
         })   
     }
 
@@ -23,7 +30,7 @@ class AddRecipeForm extends React.Component{
 
 
     render(){
-        console.log(this.state)
+      console.log(this.state)
         return (
             <div>
             <h1>Add a Recipe!</h1>
@@ -33,15 +40,18 @@ class AddRecipeForm extends React.Component{
                     this.state.ingredients.map((ingredient, index) => {
                         return( 
                             <div key={index}>
-                                <input onChange={(e, index) => this.handleChange(e)} value={this.state.ingredient}/>
+                                <input placeholder="Ingredient Name" onChange={(e, index) => this.handleChange(e)} name="ingredient name"/>
 
+                                {/* <input placeholder="Ingredient Amount" onChange={(e, index) => this.handleChange(e)} value={this.state.ingredient.amount}/> */}
+
+                                {/* <button onClick={(e)=> this.removeIngredient(e)}>Remove</button> */}
                                
                             </div>
                         )
                     })
                 }
                 <br></br>
-                <button onClick={(e)=> this.addIngredient(e)}>Add Ingridient</button>
+                <button onClick={(e)=> this.addIngredient(e)}>Add Ingredient</button>
                 <br></br>
               
                 
