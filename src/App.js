@@ -11,12 +11,14 @@ import Login from './components/Login';
 import AddRecipeForm from './components/AddRecipeForm';
 import Profile from './components/Profile';
 import SignUp from './components/Signup';
+import RecipeList from './components/RecipeList';
+
 
 
 //redux
-import store from './redux/store'
-import {Provider} from 'react-redux'
-import {fetchUsers} from './redux'
+import store from './redux/store';
+import {Provider} from 'react-redux';
+import {fetchUsers} from './redux';
 
 export default class App extends React.Component {
   constructor() {
@@ -37,6 +39,7 @@ export default class App extends React.Component {
         this.setState({ auth: updatedState });
       });
     }
+    //get recipes
   }
 
   createUser = (event) => {
@@ -45,6 +48,7 @@ export default class App extends React.Component {
       password: event.target.password.value,
     }
     api.auth.createUser(newUser).then(res => {
+      console.log(res)
       if (res.error){
        this.setState({errors: true})
      } else {    
@@ -56,8 +60,9 @@ export default class App extends React.Component {
 
 
 login = data => {
-  const updatedState = { user: {id: data.user.id,  username: data.user.username}};
-  console.log(updatedState)
+
+  const updatedState = { user: {user_id: data.id,  username: data.user.username}};
+ 
   localStorage.setItem("token", data.jwt);
   this.setState({ 
     auth: updatedState
@@ -74,6 +79,7 @@ logout = () => {
 
 
   render(){
+    console.log(this.state)
     return (
       // <Provider store={store}>
       <div className="App">
@@ -113,6 +119,12 @@ logout = () => {
               exact
               path='/signup'
               render={props => <SignUp {...props} appState={this.state} onCreateUser={this.createUser} />}
+            />
+
+          <Route 
+              exact
+              path='/recipes'
+              render={props => <RecipeList {...props}/>}
             />
   
         </div>

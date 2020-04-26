@@ -33,6 +33,13 @@ export default class Navbar extends React.Component {
                 </NavLink>
 
                 <NavLink
+                    to='/recipes'
+                    exact
+                    style={link}
+                    > Recipes
+                </NavLink>
+
+                <NavLink
                     to='/signup'
                     exact
                     style={link}

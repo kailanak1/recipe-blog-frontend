@@ -37,10 +37,20 @@ const login = data => {
     }).then(res => { return res.json()});
 };
 
+    const getRecipes = () => {
+        return fetch (`${API_ROOT}/recipes`)
+        .then(res => {
+            return res.json()
+        })
+    }
+
   export const api = {
       auth: {
           login, 
           getCurrentUser, 
           createUser
+      },
+      recipes: {
+          getRecipes
       }
   }
