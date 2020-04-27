@@ -77,14 +77,28 @@ logout = () => {
 };
 
 
-addEvent = (event) => {
+addRecipe = (event) => {
   let newRecipe = {
     title: event.target.title.value, 
     ingredients: event.ingredients.value, 
     steps: event.target.steps.value, 
-    tags: event.target.tags.value
+    tags: event.target.tags.value, 
+    user_id: this.state.auth.user_id
   }
-}
+  fetch("http://localhost:3000/api/v1/recipes", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: localStorage.getItem("token")
+    }, 
+    body: JSON.stringify(newRecipe)
+  })
+  .then(resp => resp.json())
+  .then(data => 
+    console.log(data))
+  }
+
 
 
   render(){
@@ -114,7 +128,7 @@ addEvent = (event) => {
           <Route 
             exact 
             path='/add-recipe'
-            render={props => <AddRecipeForm {...props}/>}
+            render={props => <AddRecipeForm {...props} onAddRecipe={this.addRecipe}/>}
           />
   
   
