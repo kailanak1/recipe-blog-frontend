@@ -51,7 +51,7 @@ class RecipeList extends React.Component{
                     <br></br>
                     <div className="ui column" id={meal.id}>
                         <div className="ui card" 
-                        style={{border: "1 px solid black"}}
+                        style={{border: "1 px solid black", cursor: 'pointer'}}
                         key={meal.id}
                         onClick={() => this.handleClick(meal)}
                         >

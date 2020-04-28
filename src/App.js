@@ -93,11 +93,12 @@ addRecipe = (event) => {
   let newRecipe = {
     title: event.target.title.value, 
     summary: event.target.summary.value,
-    // ingredients: {name: event.name.value, amount: event.target.amount.value},
+    // ingredients: [{name: event.name.value, amount: event.target.amount.value}],
     steps: event.target.steps.value, 
     tags: event.target.tags.value, 
     user_id: this.state.auth.user.id
   }
+  console.log(newRecipe)
   fetch("http://localhost:3000/api/v1/recipes", {
     method: "POST",
     headers: {
@@ -107,7 +108,7 @@ addRecipe = (event) => {
     }, 
     body: JSON.stringify(newRecipe)
   })
-  .then(resp => resp.json())
+  .then(resp => (console.log(resp)))
   .then(data => 
     console.log(data))
   }

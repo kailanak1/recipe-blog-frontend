@@ -1,5 +1,5 @@
 import React from 'react'
-//need to send add recipe down from app, api call to backend
+
 
 class AddRecipeForm extends React.Component{
    
@@ -20,6 +20,15 @@ class AddRecipeForm extends React.Component{
         this.setState((prevState=> ({
             ingredients: [...prevState.ingredients, {name:"", amount:""}],
         })))
+    }
+
+    removeIngredient = (index, e) => {
+        e.preventDefault()
+        this.state.ingredients.splice(index, 1)
+        console.log(this.state.ingredients)
+        this.setState({
+            ingredients: this.state.ingredients
+        })
     }
 
     handleStepChange = (e) => {
@@ -89,7 +98,7 @@ class AddRecipeForm extends React.Component{
                     onChange={(e)=>this.handleChange}
                 />
 
-                    {/* <button onClick={(e)=> this.removeIngredient(e)}>Remove</button> */}
+                    {index !== 0 ? <button onClick={(e)=> this.removeIngredient(index, e)}>Remove</button> : null}
                    
                 </div>
             )
