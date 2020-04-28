@@ -1,11 +1,15 @@
 import React, {Fragment} from 'react'
 import { api } from '../services/api'
+// import { RecipeDetail } from './RecipeDetail'
+import { Link } from 'react-router-dom'
 
 class RecipeList extends React.Component{
     constructor(){
         super()
         this.state = {
-            recipes: []
+            recipes: [],
+            detail: false, 
+            meal: ''
         }
     }
 
@@ -20,15 +24,35 @@ class RecipeList extends React.Component{
         })
     }
 
+
+    // showDetail = () => {
+    //     if (this.state.detail === false) {
+    //       return <RecipeDetail {...this.props} recipe={this.state.meal} style={{display: "none"}} show={this.state.detail} />
+    //     } else {
+    //       return <RecipeDetail {...this.props} recipe={this.state.meal} show={this.state.detail} style={{display:'block'}}/>}
+    //   }
+
+    //   handleClick = () => {
+    //     this.setState(prev => {
+    //         return {
+    //           detail: !prev.detail,
+    //           meal: meal
+    //         }
+    //       }, () => this.showDetail)
+    //     }
+
+    
     recipeMapper = () => {
         return this.state.recipes.map(recipe => {
            
             return (
                 <Fragment>
                     <br></br>
-                    <div className="ui column">
-                        <div className="ui card"
+                    <div className="ui column" >
+                        <div className="ui card" 
+                        style={{border: "1px"}}
                         key={recipe.id}
+                        // onClick = {this.onClick()}
                         >
                             <div className="content">
                                 <div className="header">

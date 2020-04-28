@@ -26,7 +26,8 @@ export default class App extends React.Component {
     this.state = {
       auth: {
         user: {},
-        errors: false 
+        errors: false, 
+        recipes: []
      
       }
     };
@@ -40,6 +41,12 @@ export default class App extends React.Component {
       });
     }
   }
+
+  api.recipes.getRecipes().then(data => {
+    this.setState({
+        recipes: data
+    })
+})
 
   createUser = (event) => {
     let newUser = {
@@ -59,9 +66,9 @@ export default class App extends React.Component {
 
 
 login = data => {
-
-  const updatedState = { user: {user_id: data.id,  username: data.user.username}};
- 
+  console.log(data)
+  const updatedState = { user: {user_id: data.user.id,  username: data.user.username}};
+  console.log(updatedState)
   localStorage.setItem("token", data.jwt);
   this.setState({ 
     auth: updatedState

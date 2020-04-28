@@ -5,6 +5,7 @@ class AddRecipeForm extends React.Component{
    
             state = {
                 title:"",
+                image_url: "",
                 ingredients: [
                     {name:"", amount:""}
                 ],
@@ -29,6 +30,12 @@ class AddRecipeForm extends React.Component{
     handleTagChange = (e) => {
         this.setState({
             tags: e.target.value
+        })
+    }
+
+    handleImgChange = (e) => {
+        this.setState({
+            image_url: e.target.value
         })
     }
  
@@ -105,6 +112,12 @@ class AddRecipeForm extends React.Component{
                  <label>Title</label>
                  <br></br>
                  <input placeholder="Title" onChange={ e => this.handleChange(e)} name="title" value={title}></input>
+                 <br></br>
+                 <br></br>
+                 <label>Picture</label>
+                 <br></br>
+                 <input type="text" placeholder="image url" onChange={e=> {this.handleImgChange(e)}}></input>
+                 <br></br>
                  <br></br>
                 <label>Ingredients</label>
                 {this.ingredientsMapper()}
