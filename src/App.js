@@ -90,18 +90,13 @@ logout = () => {
 
 
 addRecipe = (event) => {
-  let newTags = {
-    tags: event.target.tags.value
-  }
-  let step = {
-    step_summary: event.target.steps.value 
-  }
+ 
   let newRecipe = {
     title: event.target.title.value, 
     summary: event.target.summary.value,
-    // ingredients: [{name: event.name.value, amount: event.target.amount.value}],
-    step,
-    newTags,
+    ingredients: [{ingredient_name: event.name.value, ingredient_amount: event.target.amount.value}],
+    rec_steps: event.target.steps.value,
+    rec_tags: event.target.tags.value,
     user_id: this.state.auth.user.id
   }
   console.log(newRecipe)
@@ -128,7 +123,7 @@ addRecipe = (event) => {
       <div className="App">
         <Router>
         <header className="App-header">
-            <h1 style={{margin: '5px', paddingLeft: '10px', paddingTop: '5px', fontStretch: '200%'}}>Recipe Blog </h1>
+            <h2 style={{margin: '5px', paddingLeft: '10px', paddingTop: '5px', fontStretch: '100%'}}>Recipe (not) Blog </h2>
             <Navbar className='navbar' logout={this.logout} user={this.state.auth.user} />
           </header>
         <div className = "main">

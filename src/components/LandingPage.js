@@ -8,7 +8,7 @@ export default class LandingPage extends React.Component{
     render(){
         return(
             <div>
-            <h1>Welcome to Recipe (Not Blog)</h1>
+            <h1>Welcome to Recipe (not) Blog</h1>
             Here you can find recipes, not blogs. 
             </div>
         )
