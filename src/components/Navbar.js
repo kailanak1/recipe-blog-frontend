@@ -13,7 +13,7 @@ export default class Navbar extends React.Component {
                     to='/'
                     exact
                     style={link}
-                    > Recipe Blog
+                    > Recipe Not Blog
                 </NavLink>
 
 
@@ -61,9 +61,6 @@ export default class Navbar extends React.Component {
                     to="/"
                      exact
                     style={link}
-                    activeStyle={{
-                    background: 'rgba(71, 3, 114, 0.836)'
-                    }}
                     onClick={this.props.logout}
                 >Logout</NavLink> : null}
 

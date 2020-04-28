@@ -110,7 +110,7 @@ class AddRecipeForm extends React.Component{
        console.log("handleSubmit was hit")
        e.preventDefault()
        this.props.onAddRecipe(e)
-       this.props.history.push('/landing')
+       this.props.history.push('/recipes')
 
    }
 

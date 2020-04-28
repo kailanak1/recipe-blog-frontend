@@ -90,12 +90,18 @@ logout = () => {
 
 
 addRecipe = (event) => {
+  let newTags = {
+    tags: event.target.tags.value
+  }
+  let step = {
+    step_summary: event.target.steps.value 
+  }
   let newRecipe = {
     title: event.target.title.value, 
     summary: event.target.summary.value,
     // ingredients: [{name: event.name.value, amount: event.target.amount.value}],
-    steps: event.target.steps.value, 
-    tags: event.target.tags.value, 
+    step,
+    newTags,
     user_id: this.state.auth.user.id
   }
   console.log(newRecipe)
@@ -108,7 +114,7 @@ addRecipe = (event) => {
     }, 
     body: JSON.stringify(newRecipe)
   })
-  .then(resp => (console.log(resp)))
+  .then(resp => resp.json())
   .then(data => 
     console.log(data))
   }

@@ -5,6 +5,10 @@ const RecipeDetail = props => {
 console.log(props.recipe)
 
 
+const handleClick = () =>  {
+    props.goBack()
+}
+
 return(
     !props.show ? <div></div> : 
 
@@ -20,7 +24,7 @@ return(
 
 
 
-        
+        <button onClick = {handleClick}>Go Back</button>
     
     
     </div>

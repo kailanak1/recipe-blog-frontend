@@ -24,12 +24,23 @@ class RecipeList extends React.Component{
         })
     }
 
+    goBack = () => {
+        this.setState(prev => {
+            return {
+                detail: !prev.detail, 
+            }
+        }, () => {
+            this.props.history.push('/recipes')
+        })
+        console.log("go back was hit")
+    }
+
 
     showDetail = () => {
         if (this.state.detail === false) {
-          return <RecipeDetail {...this.props} recipe={this.state.meal} style={{display: "none"}} show={this.state.detail} />
+          return <RecipeDetail {...this.props} recipe={this.state.meal} goBack = {this.goBack} style={{display: "none"}} show={this.state.detail} />
         } else {
-          return <RecipeDetail {...this.props} recipe={this.state.meal} show={this.state.detail} style={{display:'block'}}/>}
+          return <RecipeDetail {...this.props} recipe={this.state.meal} goBack = {this.goBack} show={this.state.detail} style={{display:'block'}}/>}
       }
 
       handleClick = (meal) => {
@@ -41,9 +52,11 @@ class RecipeList extends React.Component{
           }, () => this.showDetail)
         }
 
+       
+
     
     recipeMapper = () => {
-        return this.state.recipes.map(meal => {
+        return this.state.recipes.reverse().map(meal => {
            
             return (
                 
