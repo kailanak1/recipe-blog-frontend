@@ -39,19 +39,20 @@ export default class Navbar extends React.Component {
                     > Recipes
                 </NavLink>
 
-                <NavLink
+                {!localStorage.getItem("token") ? <NavLink
                     to='/signup'
                     exact
                     style={link}
                     > Sign Up
-                </NavLink>
+                </NavLink> : null} 
 
+                {!localStorage.getItem("token") ?
                 <NavLink
                     to='/login'
                     exact
                     style={link}
                     > Login
-                </NavLink>
+                </NavLink> : null }
 
 
 

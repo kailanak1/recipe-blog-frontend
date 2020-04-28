@@ -40,13 +40,18 @@ export default class App extends React.Component {
         this.setState({ auth: updatedState });
       });
     }
+    this.fetchRecipes()
   }
 
-  api.recipes.getRecipes().then(data => {
-    this.setState({
+  fetchRecipes = () =>{
+    api.recipes.getRecipes().then(data => {
+      this.setState({
         recipes: data
+      })
     })
-})
+  }
+
+
 
   createUser = (event) => {
     let newUser = {
@@ -142,7 +147,7 @@ addRecipe = (event) => {
             <Route 
               exact
               path='/profile'
-              render={props => <Profile {...props}/>}
+              render={props => <Profile {...props} appState={this.state}/>}
             />
   
             <Route 
@@ -154,7 +159,7 @@ addRecipe = (event) => {
           <Route 
               exact
               path='/recipes'
-              render={props => <RecipeList {...props}/>}
+              render={props => <RecipeList {...props} appState={this.state}/>}
             />
   
         </div>
