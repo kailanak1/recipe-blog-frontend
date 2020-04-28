@@ -93,10 +93,10 @@ addRecipe = (event) => {
   let newRecipe = {
     title: event.target.title.value, 
     summary: event.target.summary.value,
-    ingredients: event.ingredients.value, 
+    // ingredients: {name: event.name.value, amount: event.target.amount.value},
     steps: event.target.steps.value, 
     tags: event.target.tags.value, 
-    user_id: this.state.auth.user_id
+    user_id: this.state.auth.user.id
   }
   fetch("http://localhost:3000/api/v1/recipes", {
     method: "POST",

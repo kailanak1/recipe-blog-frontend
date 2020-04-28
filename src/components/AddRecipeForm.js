@@ -69,7 +69,7 @@ class AddRecipeForm extends React.Component{
                     <label htmlFor={ingredientId}>{`Ingredient #${index + 1}`}</label>
                     <input placeholder="Ingredient Name" 
                     type="text"
-                    name={ingredientId}
+                    name="name"
                     data-id={index}
                     id={ingredientId}
                     value={this.state.ingredients[index].name}
@@ -81,7 +81,7 @@ class AddRecipeForm extends React.Component{
                 <input 
                     type="text"
                     placeholder="Amount"
-                    name={amountId}
+                    name="amount"
                     data-id={index}
                     id={amountId}
                     value={this.state.ingredients[index].amount}
@@ -98,6 +98,7 @@ class AddRecipeForm extends React.Component{
    }
 
    handleSumbit = (e) => {
+       console.log("handleSubmit was hit")
        e.preventDefault()
        this.props.onAddRecipe(e)
        this.props.history.push('/landing')
@@ -119,7 +120,7 @@ class AddRecipeForm extends React.Component{
         return (
             <div>
             <h1>Add a Recipe!</h1>
-            <form id="recipe-form" onChange={this.handleChange} onSubmit={this.handleSubmit}> 
+            <form id="recipe-form" onChange={this.handleChange} onSubmit={this.handleSumbit}> 
                  <label>Title</label>
                  <br></br>
                  <input placeholder="Title" onChange={ e => this.handleChange(e)} name="title" value={title}></input>
@@ -127,12 +128,12 @@ class AddRecipeForm extends React.Component{
                  <br></br>
                  <label>Picture</label>
                  <br></br>
-                 <input type="text" placeholder="image url" onChange={e=> {this.handleImgChange(e)}}></input>
+                 <input type="text" name="picture" placeholder="image url" onChange={e=> {this.handleImgChange(e)}}></input>
                  <br></br>
                  <br></br>
                  <label>Summary</label>
                  <br></br>
-                 <textarea placeholder="summary" onChange={e=> {this.handleSummaryChange(e)}}></textarea>
+                 <textarea placeholder="summary" name="summary" onChange={e=> {this.handleSummaryChange(e)}}></textarea>
                  <br></br>
                 <label>Ingredients</label>
                 {this.ingredientsMapper()}
@@ -142,18 +143,18 @@ class AddRecipeForm extends React.Component{
               
                 <label>Steps</label>
                 <br></br>
-                    <textarea style={textareastye} placeholder="Add steps here" onChange={e => this.handleStepChange(e)}></textarea>
+                    <textarea style={textareastye} placeholder="Add steps here" onChange={e => this.handleStepChange(e)} name="steps"></textarea>
                 <br></br>
             
 
                 <label>Tags</label>
                 <br></br>
-                <input style={{size: "100"}} placeholder="spicy, southwestern" onChange={e => this.handleTagChange(e)}></input>
+                <input style={{size: "100"}} name="tags" placeholder="spicy, southwestern" onChange={e => this.handleTagChange(e)}></input>
                 <br></br>
                
                 <br></br>
                 <br></br>
-                <button>Publish Recipe</button>
+                <input type="submit" textcontent="Publish Recipe"></input>
             </form>
             </div>
         )
