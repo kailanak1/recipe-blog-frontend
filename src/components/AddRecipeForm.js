@@ -6,6 +6,7 @@ class AddRecipeForm extends React.Component{
             state = {
                 title:"",
                 image_url: "",
+                summary: "",
                 ingredients: [
                     {name:"", amount:""}
                 ],
@@ -36,6 +37,12 @@ class AddRecipeForm extends React.Component{
     handleImgChange = (e) => {
         this.setState({
             image_url: e.target.value
+        })
+    }
+
+    handleSummaryChange = (e) => {
+        this.setState({
+            summary: e.target.value 
         })
     }
  
@@ -90,10 +97,14 @@ class AddRecipeForm extends React.Component{
     }
    }
 
+   handleSumbit = (e) => {
+       e.preventDefault()
+       this.props.onAddRecipe(e)
+       this.props.history.push('/landing')
+
+   }
+
    
-
-
-
     render(){
 
       let {title, ingredients, steps, tags} = this.state
@@ -108,7 +119,7 @@ class AddRecipeForm extends React.Component{
         return (
             <div>
             <h1>Add a Recipe!</h1>
-            <form id="recipe-form" onChange={this.handleChange}> 
+            <form id="recipe-form" onChange={this.handleChange} onSubmit={this.handleSubmit}> 
                  <label>Title</label>
                  <br></br>
                  <input placeholder="Title" onChange={ e => this.handleChange(e)} name="title" value={title}></input>
@@ -118,6 +129,10 @@ class AddRecipeForm extends React.Component{
                  <br></br>
                  <input type="text" placeholder="image url" onChange={e=> {this.handleImgChange(e)}}></input>
                  <br></br>
+                 <br></br>
+                 <label>Summary</label>
+                 <br></br>
+                 <textarea placeholder="summary" onChange={e=> {this.handleSummaryChange(e)}}></textarea>
                  <br></br>
                 <label>Ingredients</label>
                 {this.ingredientsMapper()}

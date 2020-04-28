@@ -92,6 +92,7 @@ logout = () => {
 addRecipe = (event) => {
   let newRecipe = {
     title: event.target.title.value, 
+    summary: event.target.summary.value,
     ingredients: event.ingredients.value, 
     steps: event.target.steps.value, 
     tags: event.target.tags.value, 
