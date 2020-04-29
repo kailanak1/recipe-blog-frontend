@@ -22,7 +22,7 @@ class Login extends React.Component{
         api.auth.login(this.state.fields).then(res => {
             if (!res.errors){
                 this.props.onLogin(res);
-                this.props.history.push('/landing')
+                this.props.history.push('/')
             } else {
                 this.setState({errors: true})
             }

@@ -27,11 +27,12 @@ export default class App extends React.Component {
       auth: {
         user: {},
         errors: false, 
-        recipes: []
-     
+        recipes: [], 
+        myrecipes: []
       }
     };
   }
+
   componentDidMount() {
     let token = localStorage.getItem("token");
     if (token) {
@@ -50,6 +51,14 @@ export default class App extends React.Component {
       })
     })
   }
+
+  // findUserRecipe = () => {
+  //   this.setState({
+  //   myrecipes: this.state.auth.recipes.filter((recipe => {
+  //     return recipe.user_id == this.state.auth.user.id
+  //   }))
+  //   })
+  // }
 
 
 
@@ -94,10 +103,11 @@ addRecipe = (event) => {
   let newRecipe = {
     title: event.target.title.value, 
     summary: event.target.summary.value,
-    ingredients: [{ingredient_name: event.name.value, ingredient_amount: event.target.amount.value}],
+    ingredients: event.ingredients,
     rec_steps: event.target.steps.value,
     rec_tags: event.target.tags.value,
     user_id: this.state.auth.user.id
+    //use token user_id
   }
   console.log(newRecipe)
   fetch("http://localhost:3000/api/v1/recipes", {
@@ -113,6 +123,8 @@ addRecipe = (event) => {
   .then(data => 
     console.log(data))
   }
+
+ 
 
 
 
@@ -150,7 +162,7 @@ addRecipe = (event) => {
             <Route 
               exact
               path='/profile'
-              render={props => <Profile {...props} appState={this.state}/>}
+              render={props => <Profile {...props} appState={this.state} />}
             />
   
             <Route 
