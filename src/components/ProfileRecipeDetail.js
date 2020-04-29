@@ -15,7 +15,7 @@ const handleClick = () =>  {
 
 const ingredientsMapper = () => {
     let ingredients = props.recipe.ingredient_name 
-    if (ingredients.length > 0){
+    if (ingredients){
         return ingredients.split(",").map((ingredient, index) => {
             return <ListGroup key ={index} className="list-group-item">
                 <ListGroup.Item>{ingredient}</ListGroup.Item>
@@ -29,7 +29,7 @@ const ingredientsMapper = () => {
 
 const stepsMapper = () => {
     let steps = props.recipe.rec_steps
-    if(steps.length > 0){
+    if(steps){
         return steps.split("\n").map((step, index) => {
             return <ListGroup key={index} className="list-group-item">
                 <ListGroup.Item>{step}</ListGroup.Item>
@@ -47,6 +47,9 @@ const deleteRecipe = (e) => {
 return(
     !props.show ? <div></div> : 
     <Card style={{width: '36rem'}}>
+        <div className="btn-lef" style={{display: 'flex'}}>
+        <Button variant="primary" onClick = {handleClick} style={{ marginRight: "auto" }}>Go Back</Button>
+        </div>
     <div key={props.recipe.id}>
         <Card.Title style={{fontSize:'50px' }}>{props.recipe.title}</Card.Title>
         <Card.Text>{props.recipe.summary ? <div>{props.recipe.summary}</div> : "No summary given"}</Card.Text>
@@ -66,7 +69,6 @@ return(
         <br></br>
         <br></br>
 
-        <Button variant="primary" onClick = {handleClick}>Go Back</Button>
 
       <Button variant="warning" onClick= {() => deleteRecipe(props.recipe.id)}>Delete</Button>
 

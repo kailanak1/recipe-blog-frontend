@@ -28,7 +28,8 @@ export default class App extends React.Component {
         user: {},
         errors: false, 
         recipes: [], 
-        myrecipes: []
+        myrecipes: [],
+        newestThree: []
       }
     };
   }
@@ -124,18 +125,24 @@ addRecipe = (event) => {
     console.log(data))
   }
 
- 
+  spliceForLanding = () => {
+    let newest = this.state.recipes.splice(-1, 3)
+    
+    this.setState({
+      newestThree: newest
+    })
+  }
 
 
 
   render(){
-    console.log(this.state)
+    console.log(this.state.newestThree)
     return (
       // <Provider store={store}>
       <div className="App">
         <Router>
         <header className="App-header">
-            <h2 style={{margin: '5px', paddingLeft: '10px', paddingTop: '5px', fontStretch: '100%'}}>Recipe (not) Blog </h2>
+            <h2 style={{margin: '5px', paddingLeft: '10px', paddingTop: '5px', fontStretch: '100%'}}>Show Me the Recipe </h2>
             <Navbar className='navbar' logout={this.logout} user={this.state.auth.user} />
           </header>
         <div className = "main">
@@ -143,7 +150,7 @@ addRecipe = (event) => {
           <Route 
             exact 
             path='/'
-            render={props => <LandingPage {...props}/>}
+            render={props => <LandingPage {...props} appState={this.state}/>}
           />
   
           <Route 

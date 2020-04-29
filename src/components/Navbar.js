@@ -13,7 +13,7 @@ export default class Navbar extends React.Component {
                     to='/'
                     exact
                     style={link}
-                    > Recipe Not Blog
+                    > Recipes Not Blogs
                 </NavLink>
 
 
