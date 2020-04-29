@@ -6,15 +6,33 @@ class Profile extends React.Component{
     constructor(){
         super()
         this.state = {
-            myrecipes:[]
+            recipes:[], 
+            myrecipes: []
         }
+    }
+
+
+    componentDidMount(){
+        api.recipes.getRecipes().then(data => {
+            this.setState({
+                recipes: data
+            })
+        })
+    }
+
+    filtermyRecipes = () => {
+        const filtered = (this.state.recipes.filter(recipe => recipe.user_id == this.props.appState.auth.user.id))
+        this.setState({
+            myrecipes: filtered
+        })
     }
 
 
     
     
     recipeMapper = () => {
-        return this.state.myrecipes.reverse().map(meal => {
+        const filtered = (this.state.recipes.filter(recipe => recipe.user_id == this.props.appState.auth.user.id))
+        return filtered.reverse().map(meal => {
            
             return (
                 
@@ -56,13 +74,17 @@ class Profile extends React.Component{
 
     render(){
         console.log(this.props)
+        console.log(this.state)
+        console.log(this.props.appState.auth.user.id)
+
+     
         return(
             <div>
                 <h1>{this.props.appState.auth.user.username}'s Recipes</h1>
-                
+                {this.recipeMapper()}
             </div>
         )
     }
 }
 
-export default Profile 
+export default Profile

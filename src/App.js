@@ -103,7 +103,7 @@ addRecipe = (event) => {
   let newRecipe = {
     title: event.target.title.value, 
     summary: event.target.summary.value,
-    ingredients: event.ingredients,
+    ingredient_name: event.target.ingredients.value,
     rec_steps: event.target.steps.value,
     rec_tags: event.target.tags.value,
     user_id: this.state.auth.user.id
