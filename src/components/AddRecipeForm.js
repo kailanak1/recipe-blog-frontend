@@ -41,11 +41,11 @@ class AddRecipeForm extends React.Component{
         })
     }
 
-    handleImgChange = (e) => {
-        this.setState({
-            image_url: e.target.value
-        })
-    }
+    // handleImgChange = (e) => {
+    //     this.setState({
+    //         image_url: e.target.value
+    //     })
+    // }
 
     handleSummaryChange = (e) => {
         this.setState({
@@ -120,7 +120,7 @@ class AddRecipeForm extends React.Component{
        console.log("handleSubmit was hit")
        e.preventDefault()
        this.props.onAddRecipe(e)
-       this.props.history.push('/recipes')
+       this.props.history.push('/')
 
    }
 
@@ -150,11 +150,11 @@ class AddRecipeForm extends React.Component{
                  <label>Title</label>
                  <br></br>
                  <input placeholder="Title" onChange={ e => this.handleTitleChange(e)} name="title" value={title}></input>
-                 <br></br>
+                 {/* <br></br>
                  <br></br>
                  <label>Picture</label>
                  <br></br>
-                 <input type="text" name="picture" placeholder="image url" onChange={e=> {this.handleImgChange(e)}}></input>
+                 <input type="text" name="picture" placeholder="image url" onChange={e=> {this.handleImgChange(e)}}></input> */}
                  <br></br>
                  <br></br>
                  <label>Summary</label>
