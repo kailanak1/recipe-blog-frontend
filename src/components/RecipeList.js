@@ -2,6 +2,7 @@ import React, {Fragment} from 'react'
 import { api } from '../services/api'
 import  RecipeDetail  from './RecipeDetail'
 import { Link } from 'react-router-dom'
+import Card from 'react-bootstrap/Card'
 
 class RecipeList extends React.Component{
     constructor(){
@@ -61,24 +62,24 @@ class RecipeList extends React.Component{
             return (
                 
                 <Fragment>
-                    <br></br>
-                    <div className="ui column" id={meal.id}>
-                        <div className="ui card" 
-                        style={{border: "1 px solid black", cursor: 'pointer'}}
-                        key={meal.id}
-                        onClick={() => this.handleClick(meal)}
-                        >
-                            <div className="content">
-                                <div className="header">
-                                    <span stye={{fontWeight: 'bolder'}}>{meal.title}</span>
-                                    <br></br>
-                                </div>
-                                <div className="meta text-wrap">
+                    <div className = "ui column">
+                        <div className = "ui card">
+                    <Card 
+                    style={{width: '18rem', border: "1px solid black", cursor: 'pointer', alignSelf: 'center'}} 
+                    id={meal.id}  
+                    onClick={() => this.handleClick(meal)}>
+                        <Card.Img variant="top" src=""></Card.Img>
+                  <Card.Body>
+                            <Card.Title style={{fontWeight: 'bolder'}}>{meal.title}</Card.Title>
+                                <br></br>
+                                <Card.Subtitle className="meta text-wrap">
                                     {!!meal.summary ? meal.summary : "No summary given"}
-                                </div>
-                            </div>
-
-                        </div>
+                                   
+                                </Card.Subtitle>
+                    </Card.Body>
+                    </Card>
+                    <br></br>
+                    </div>
                     </div>
                 </Fragment>
             )

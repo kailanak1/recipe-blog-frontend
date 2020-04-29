@@ -3,6 +3,7 @@ import React, {Fragment} from 'react'
 import { api } from '../services/api'
 import RecipeProfileDetail from './ProfileRecipeDetail'
 import Card from 'react-bootstrap/Card'
+import EditForm from './EditForm'
 
 class Profile extends React.Component{
     constructor(){
@@ -43,9 +44,9 @@ class Profile extends React.Component{
 
     showDetail = () => {
         if (this.state.detail === false) {
-          return <RecipeProfileDetail {...this.props} recipe={this.state.meal} goBack = {this.goBack} style={{display: "none"}} show={this.state.detail} delete={this.handleDelete}/>
+          return <RecipeProfileDetail {...this.props} recipe={this.state.meal} goBack = {this.goBack} style={{display: "none"}} show={this.state.detail} edit = {this.handleEdit} delete={this.handleDelete}/>
         } else {
-          return <RecipeProfileDetail {...this.props} recipe={this.state.meal} goBack = {this.goBack} show={this.state.detail} delete={this.handleDelete} style={{display:'block'}}/>}
+          return <RecipeProfileDetail {...this.props} recipe={this.state.meal} goBack = {this.goBack} show={this.state.detail} delete={this.handleDelete} edit = {this.handleEdit} style={{display:'block'}}/>}
       }
 
       handleClick = (meal) => {
@@ -70,6 +71,7 @@ class Profile extends React.Component{
                     style={{width: '18rem', border: "1px solid black", cursor: 'pointer'}} 
                     id={meal.id}  
                     onClick={() => this.handleClick(meal)}>
+                        <Card.Img variant="top" src=""></Card.Img>
                   <Card.Body>
                             <Card.Title style={{fontWeight: 'bolder'}}>{meal.title}</Card.Title>
                                 <br></br>
@@ -79,6 +81,7 @@ class Profile extends React.Component{
                                 </Card.Subtitle>
                     </Card.Body>
                     </Card>
+                    <br></br>
                 </Fragment>
             )
         })
@@ -102,23 +105,20 @@ class Profile extends React.Component{
         
     }
 
-//   mapRecipeArray = () => {
-//       return this.recipeArray().map(recipe => {
-//           recipe
-//         //   if(recipe.user_id == this.props.appState.auth.user.id){
-//         //       return <div>{recipe.title}</div>
-//         //   }
-//       })
-//   }
+    handleEdit = (e) => {
+        let editedRecipe = {
 
+        }
+    }
+
+
+   
 
 
     render(){
         console.log(this.props)
         console.log(this.state)
-        console.log(this.props.appState.auth.user.id)
 
-     
         return(
             <div>
                 <h1>{this.props.appState.auth.user.username}'s Recipes</h1>

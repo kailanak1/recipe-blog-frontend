@@ -1,8 +1,9 @@
 import React from 'react'
-
+import Card from 'react-bootstrap/Card'
+import ListGroup from 'react-bootstrap/ListGroup'
 
 const RecipeDetail = props => {
-console.log(props.recipe)
+console.log(props.recipe.ingredient_name )
 
 
 const handleClick = () =>  {
@@ -11,13 +12,16 @@ const handleClick = () =>  {
 
 const ingredientsMapper = () => {
     let ingredients = props.recipe.ingredient_name 
-    if (ingredients > 0){
+    console.log(ingredients)
+    if (ingredients.length > 0){
         return ingredients.split(",").map((ingredient, index) => {
-            return <li key ={index} className="list-group-item">
-                {ingredient}
-            </li>
+            return <ListGroup key ={index} className="list-group-item">
+                <ListGroup.Item>{ingredient}</ListGroup.Item>
+            </ListGroup>
         })
 
+    } else {
+        return "No ingredients..."
     }
 }
 

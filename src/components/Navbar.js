@@ -17,13 +17,13 @@ export default class Navbar extends React.Component {
                 </NavLink>
 
 
-               
+                {!!localStorage.getItem("token") ?
                 <NavLink
                     to='/profile'
                     exact
                     style={link}
                     > Profile
-                </NavLink>
+                </NavLink> : null}
 
                 {!!localStorage.getItem("token")? <NavLink
                     to='/add-recipe'

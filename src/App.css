@@ -26,12 +26,22 @@
 }
 
 .App-header .navbar {
-  float: right;
-  padding-top: 30px
+  font-weight: 300;
+  padding-top: 30px;
+  padding: 10px;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.card {
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
 }
 
 

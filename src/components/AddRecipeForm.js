@@ -1,6 +1,6 @@
 import React from 'react'
 
-
+const maxChars = 80 
 class AddRecipeForm extends React.Component{
    
             state = {
@@ -9,9 +9,12 @@ class AddRecipeForm extends React.Component{
                 summary: "",
                 ingredients: "",
                 steps: [],
-                tags: []
+                tags: [],
+                charsLeft: maxChars
             }
   
+
+          
 
     // addIngredient = (e) => {
     //     e.preventDefault()
@@ -149,7 +152,7 @@ class AddRecipeForm extends React.Component{
             <form id="recipe-form" onSubmit={this.handleSumbit}> 
                  <label>Title</label>
                  <br></br>
-                 <input placeholder="Title" onChange={ e => this.handleTitleChange(e)} name="title" value={title}></input>
+                 <input  placeholder="Title" onChange={ e => this.handleTitleChange(e)} name="title" value={title}></input>
                  {/* <br></br>
                  <br></br>
                  <label>Picture</label>
@@ -159,7 +162,7 @@ class AddRecipeForm extends React.Component{
                  <br></br>
                  <label>Summary</label>
                  <br></br>
-                 <textarea style ={smallertextareastyle} placeholder="summary" name="summary" onChange={e=> {this.handleSummaryChange(e)}}></textarea>
+                 <textarea maxLength= "80" style ={smallertextareastyle} placeholder="Summary (80 character limit)" name="summary" onChange={e=> {this.handleSummaryChange(e)}}></textarea>
                  <br></br>
                  <br></br>
                 <label>Ingredients</label>
@@ -171,7 +174,7 @@ class AddRecipeForm extends React.Component{
                 <br></br>
                 <label>Steps</label>
                 <br></br>
-                    <textarea style={textareastyle} placeholder="Add steps here" onChange={e => this.handleStepChange(e)} name="steps"></textarea>
+                    <textarea style={textareastyle} placeholder="Add each step with a new line" onChange={e => this.handleStepChange(e)} name="steps"></textarea>
                 <br></br>
                 <br></br>
                 <label>Tags</label>
