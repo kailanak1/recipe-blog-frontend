@@ -21,6 +21,10 @@ const ingredientsMapper = () => {
     }
 }
 
+const deleteRecipe = (e) => {
+    console.log(e)
+    props.delete(e)
+}
 
 
 return(
@@ -47,7 +51,7 @@ return(
 
         <button onClick = {handleClick}>Go Back</button>
 
-      
+      <button onClick= {() => deleteRecipe(props.recipe.id)}>Delete</button>
 
         <br></br>
         

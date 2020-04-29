@@ -43,9 +43,9 @@ class Profile extends React.Component{
 
     showDetail = () => {
         if (this.state.detail === false) {
-          return <RecipeProfileDetail {...this.props} recipe={this.state.meal} goBack = {this.goBack} style={{display: "none"}} show={this.state.detail} />
+          return <RecipeProfileDetail {...this.props} recipe={this.state.meal} goBack = {this.goBack} style={{display: "none"}} show={this.state.detail} delete={this.handleDelete}/>
         } else {
-          return <RecipeProfileDetail {...this.props} recipe={this.state.meal} goBack = {this.goBack} show={this.state.detail} style={{display:'block'}}/>}
+          return <RecipeProfileDetail {...this.props} recipe={this.state.meal} goBack = {this.goBack} show={this.state.detail} delete={this.handleDelete} style={{display:'block'}}/>}
       }
 
       handleClick = (meal) => {
@@ -75,12 +75,10 @@ class Profile extends React.Component{
                                 <br></br>
                                 <Card.Subtitle className="meta text-wrap">
                                     {!!meal.summary ? meal.summary : "No summary given"}
-                                    <br></br>
-                                    <button onClick={() => this.handleDelete(meal.id)}>Delete</button>
+                                   
                                 </Card.Subtitle>
                     </Card.Body>
                     </Card>
-                    <br></br>
                 </Fragment>
             )
         })
@@ -88,10 +86,11 @@ class Profile extends React.Component{
 
 
     handleDelete = (e) => {
-        fetch(`http://localhost:3000/api/v1/recipes/${e.recipe.id}`, {
+      console.log("got to delete req")
+        fetch(`http://localhost:3000/api/v1/recipes/${e}`, {
             method: "DELETE"
           })
-          .then(resp => this.props.history.push('/profile'))
+          .then(resp => this.filtermyRecipes())
         
     }
 
