@@ -84,13 +84,21 @@ class Profile extends React.Component{
         })
     }
 
+    handleDeletedRecipe = (id) => {
+        const newRecipeState = this.state.recipes.filter(recipe => recipe.id !== id)
+        this.setState({
+            recipes: newRecipeState
+        })
+}
+
+    
 
     handleDelete = (e) => {
-      console.log("got to delete req")
         fetch(`http://localhost:3000/api/v1/recipes/${e}`, {
             method: "DELETE"
           })
-          .then(resp => this.filtermyRecipes())
+          .then(resp => this.handleDeletedRecipe(e))
+          .then(data => this.goBack())
         
     }
 
