@@ -105,11 +105,11 @@ class Profile extends React.Component{
         
     }
 
-    handleEdit = (e) => {
-        let editedRecipe = {
+    // handleEdit = (e) => {
+    //     let editedRecipe = {
 
-        }
-    }
+    //     }
+    // }
 
 
    

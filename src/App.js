@@ -53,15 +53,6 @@ export default class App extends React.Component {
     })
   }
 
-  // findUserRecipe = () => {
-  //   this.setState({
-  //   myrecipes: this.state.auth.recipes.filter((recipe => {
-  //     return recipe.user_id == this.state.auth.user.id
-  //   }))
-  //   })
-  // }
-
-
 
   createUser = (event) => {
     let newUser = {

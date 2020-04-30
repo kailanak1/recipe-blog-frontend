@@ -122,8 +122,12 @@ class AddRecipeForm extends React.Component{
    handleSumbit = (e) => {
        console.log("handleSubmit was hit")
        e.preventDefault()
+       if(!!e.title){
        this.props.onAddRecipe(e)
        this.props.history.push('/')
+       }else{
+           window.alert("Please add a title")
+       }
 
    }
 
@@ -162,7 +166,7 @@ class AddRecipeForm extends React.Component{
                  <br></br>
                  <label>Summary</label>
                  <br></br>
-                 <textarea maxLength= "80" style ={smallertextareastyle} placeholder="Summary (80 character limit)" name="summary" onChange={e=> {this.handleSummaryChange(e)}}></textarea>
+                 <textarea maxLength= {maxChars} style ={smallertextareastyle} placeholder="Summary (80 character limit)" name="summary" onChange={e=> {this.handleSummaryChange(e)}}></textarea>
                  <br></br>
                  <br></br>
                 <label>Ingredients</label>
