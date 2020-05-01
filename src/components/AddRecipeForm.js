@@ -85,11 +85,12 @@ const AddRecipeForm  = (props) => {
         {fields.map((item, index) => (
           <div key={item.id}>
             <input
+            type="textarea"
             name={recipe.steps} 
             onChange={handleChange} 
             style={smallertextareastyle} 
             defaultValue={`Step ${index +1} `} 
-            ref={register()} />
+            ref={register()}/>
             <button onClick={() => remove(index)}>Delete</button>
           </div>
         ))}
@@ -121,8 +122,19 @@ const AddRecipeForm  = (props) => {
         <br></br>
         <input onChange={handleChange} name="title" placeholder="Title" ref={register}></input>
         <br></br>
+        <label>Upload image</label>
+        <br></br>
+        <input onChange={handleChange} type="file" name="image_url" accept="image/*" ref={register}/>
+        <br></br>
+        <label>Summary</label>
+        <br></br>
+        <textarea onChange={handleChange} placeholder="80 characters max" type="textarea" name="summaryt" style={smallertextareastyle} ref={register}/>
+        <br></br>
         <label>Steps</label>
       {stepsMapper()}
+      <br></br>
+      <button onClick={(e)=> {addStepToRecipe(e)}}>Add Step</button>
+      <br></br>
       <input type="submit"></input>
     </form>
     </div>
