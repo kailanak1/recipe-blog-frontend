@@ -5,6 +5,7 @@ import ListGroup from 'react-bootstrap/ListGroup'
 
 
 
+
 const ProfileRecipeDetail = props => {
 console.log(props.recipe)
 
@@ -69,7 +70,7 @@ return(
         <br></br>
         <br></br>
 
-
+    <Button>Edit</Button>
       <Button variant="warning" onClick= {() => deleteRecipe(props.recipe.id)}>Delete</Button>
 
         <br></br>

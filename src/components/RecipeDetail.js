@@ -51,13 +51,12 @@ return(
 
         <br></br>
 
-       
-
         {props.recipe.ingredient_name ? <div>{ingredientsMapper()}</div> : "No ingredients written"}
         <br></br>
        
         {props.recipe.steps ? <div>{stepsMapper()}</div> : "No steps given"}
         <br></br>
+   
 
         <small>Tags: {props.recipe.rec_tags ?  props.recipe.rec_tags : "No tags"  }</small>
 

@@ -11,7 +11,8 @@ class Profile extends React.Component{
         this.state = {
             recipes:[], 
             detail: false,
-            myrecipes: []
+            myrecipes: [], 
+            form: false
         }
     }
 
