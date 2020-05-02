@@ -1,6 +1,7 @@
 import React, {useReducer, useState} from 'react'
 
 import { useForm, useFieldArray } from "react-hook-form";
+import Form from 'react-bootstrap/Form';
 
 
 
@@ -17,7 +18,7 @@ class AddRecipeForm extends React.Component {
         steps: [
             {step_summary: ""}
         ],
-        tags: []
+        tags: ""
         }
     }
 
@@ -49,12 +50,14 @@ class AddRecipeForm extends React.Component {
                     value={ingredient.name}
                     onChange={(e) => this.handleIngredientNameChange(e, index)}
                     placeholder="name"
+                    name="name"
                 />
 
                 <input
                     value={ingredient.amount}
                     onChange={(e) => this.handleIngredientAmountChange(e, index)}
                     placeholder="amount"
+                    name="amount"
                 />
             </div>
           );
@@ -116,6 +119,7 @@ class AddRecipeForm extends React.Component {
               <textarea
                 placeholder={`Step${index+1}`}
                 style={textareastyle}
+                name="step_summary"
                 value={step.step_summary}
                 onChange={(e) => this.handleStepChange(e, index)}
               />
@@ -139,7 +143,6 @@ class AddRecipeForm extends React.Component {
       };
 
     handleSumbit = (e) => {
-        console.log("handleSubmit was hit")
         e.preventDefault()
         if(!e.title){
         this.props.onAddRecipe(e)
@@ -163,7 +166,7 @@ class AddRecipeForm extends React.Component {
   return (
       <div>
           <h1>Add a new recipe!</h1>
-    <form onSubmit={this.handleSumbit}>
+    <Form onSubmit={this.handleSumbit} >
         <label>Title</label>
         <br></br>
         <input onChange={this.handleChange} name="title" placeholder="Title" ></input>
@@ -190,7 +193,7 @@ class AddRecipeForm extends React.Component {
       <input onChange={this.handleChange} name="tags" placeholder="tags separated by a comma"></input>
      <br></br>
     <input type="submit" textContent="Publish Recipe"></input>
-    </form>
+    </Form>
     </div>
   );
   }

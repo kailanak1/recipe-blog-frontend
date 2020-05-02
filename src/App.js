@@ -96,9 +96,9 @@ addRecipe = (event) => {
     title: event.target.title.value,
     main_pic: event.target.main_pic.value, 
     summary: event.target.summary.value,
-    ingredients: {name: event.target.ingredients.name.value, amount: event.target.ingredients.amount.value},
-    steps: [event.target.steps.value],
-    tags: [event.target.tags.value],
+    ingredients: [{name: event.target.name.value, amount: event.target.amount.value}],
+    steps: event.target.steps,
+    tags: event.target.tags.value,
     user_id: this.state.auth.user.id
     //use token user_id
   }

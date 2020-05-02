@@ -16,6 +16,7 @@ class Profile extends React.Component{
         }
     }
 
+    //add a render conditional here
 
     componentDidMount(){
         api.recipes.getRecipes().then(data => {
