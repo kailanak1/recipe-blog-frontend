@@ -21,9 +21,7 @@ class AddRecipeForm extends React.Component {
         }
     }
 
-    handleSubmit = () => {
-        console.log("handleSubmit was hit")
-    }
+ 
   
     handleChange = (event) => {
         this.setState({
@@ -44,32 +42,50 @@ class AddRecipeForm extends React.Component {
         return this.state.ingredients.map((ingredient, index) => {
           return (
        
-                <div key={`name ${index}`} className="form-group">
+                <div key={`name ${index}`} 
+                className="form-group">
             
                 <input
                     value={ingredient.name}
-                    onChange={(e) => this.handleIngredientChange(e, index)}
+                    onChange={(e) => this.handleIngredientNameChange(e, index)}
+                    placeholder="name"
                 />
-                <div key={`amount ${index}`}>
+
                 <input
                     value={ingredient.amount}
-                    onChange={(e) => this.handleIngredientChange(e, index)}
+                    onChange={(e) => this.handleIngredientAmountChange(e, index)}
+                    placeholder="amount"
                 />
-                </div>
             </div>
           );
         });
       };
 
-      handleIngredientChange = (e, ingredientIndex) => {
-        let newIngredient = e.target.value;
+      
+      handleIngredientNameChange = (e, ingredientIndex) => {
+        let newIngredientName = e.target.value;
         this.setState((prev) => {
           return {
             ...prev,
-            ingredients: prev.steps.map((ingredient, index) => {
+            ingredients: prev.ingredients.map((ingredient, index) => {
               if (index == ingredientIndex) {
-                return { ...ingredient, name: newIngredient };
-              }
+                return { ...ingredient, name: newIngredientName};
+              } 
+              return ingredient;
+            }),
+          };
+        });
+      };
+
+      handleIngredientAmountChange = (e, ingredientIndex) => {
+        let newIngredientAmount = e.target.value;
+        this.setState((prev) => {
+          return {
+            ...prev,
+            ingredients: prev.ingredients.map((ingredient, index) => {
+              if (index == ingredientIndex) {
+                return { ...ingredient, amount: newIngredientAmount};
+              } 
               return ingredient;
             }),
           };
@@ -86,11 +102,20 @@ class AddRecipeForm extends React.Component {
         });
       };
       renderStepInputs = () => {
+        const textareastyle = {
+            padding: "9px", 
+            boxSizing: "border-box", 
+            fontSize: "15px", 
+            minHeight: "100px",
+            minWidth: "250px"
+        }
         return this.state.steps.map((step, index) => {
           return (
             <div key={index} className="form-group">
           
-              <input
+              <textarea
+                placeholder={`Step${index+1}`}
+                style={textareastyle}
                 value={step.step_summary}
                 onChange={(e) => this.handleStepChange(e, index)}
               />
@@ -105,16 +130,27 @@ class AddRecipeForm extends React.Component {
             ...prev,
             steps: prev.steps.map((step, index) => {
               if (index == stepIndex) {
-                return { ...step, title: newStep };
-              }
+                return { ...step, step_summary: newStep };
+              } 
               return step;
             }),
           };
         });
       };
 
+    handleSumbit = (e) => {
+        console.log("handleSubmit was hit")
+        e.preventDefault()
+        if(!e.title){
+        this.props.onAddRecipe(e)
+        this.props.history.push('/')
+        }else{
+            window.alert("Please add a title")
+        }
+    }
 
   render(){
+      console.log(this.props)
     const maxChars = 80
     const smallertextareastyle={
         padding: "9px", 
@@ -123,10 +159,11 @@ class AddRecipeForm extends React.Component {
         minHeight: "75px",
         minWidth: "100px"
   } 
+  
   return (
       <div>
           <h1>Add a new recipe!</h1>
-    <form >
+    <form onSubmit={this.handleSumbit}>
         <label>Title</label>
         <br></br>
         <input onChange={this.handleChange} name="title" placeholder="Title" ></input>
@@ -134,7 +171,7 @@ class AddRecipeForm extends React.Component {
         <br></br>
         <label>Upload image</label>
         <br></br>
-        <input onChange={this.handleChange} type="file" name="image_url" accept="image/*" />
+        <input onChange={this.handleChange} type="file" name="main_pic" accept="image/*" />
         <br></br>
         <label>Summary</label>
         <br></br>
@@ -148,8 +185,11 @@ class AddRecipeForm extends React.Component {
       {this.renderStepInputs()}
       <button type="button" onClick={()=> this.addStepInputs()}>+ Add Step</button>
       <br></br>
-     
-      <input onSubmit={this.handleSubmit()} type="submit"></input>
+      <label>Tags</label>
+      <br></br>
+      <input onChange={this.handleChange} name="tags" placeholder="tags separated by a comma"></input>
+     <br></br>
+    <input type="submit" textContent="Publish Recipe"></input>
     </form>
     </div>
   );
