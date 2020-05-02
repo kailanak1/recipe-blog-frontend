@@ -3,144 +3,157 @@ import React, {useReducer, useState} from 'react'
 import { useForm, useFieldArray } from "react-hook-form";
 
 
-const maxChars = 80
-const smallertextareastyle= {
-    padding: "9px", 
-    boxSizing: "border-box", 
-    fontSize: "15px", 
-    minHeight: "75px",
-    minWidth: "100px"
-  } 
-const AddRecipeForm  = (props) => {
 
-
-    const [recipe, setRecipe] = useReducer(
-        (recipe, newRecipe) => ({...recipe, ...newRecipe}),
-        {
-        title:"",
-        image_url: "",
+class AddRecipeForm extends React.Component {
+    constructor(){
+        super()
+        this.state={
+            title:"",
+        main_pic: "",
         summary: "",
         ingredients: [
             {name: "", amount: ""}
         ],
-        steps: [],
-        tags: [],
-        charsLeft: maxChars
+        steps: [
+            {step_summary: ""}
+        ],
+        tags: []
+        }
     }
-    )
-   
-    const handleChange = (e) =>{
-        const {name, value} = e.target
-        setRecipe({[name]: value})
+
+    handleSubmit = () => {
+        console.log("handleSubmit was hit")
     }
-    
-    const addStepToRecipe = (e) => {
-        let newStep = ""
-        setRecipe({ 
-            steps: [...recipe.steps, newStep]
+  
+    handleChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
         })
     }
 
-    // let totalSteps = 0;
-
-
-
-    // const handleAddStep = (e) => {
-    //     console.log(e.target.name)
-    //     e.preventDefault()
-    //     setRecipe({
-    //         ...recipe,
-    //         steps: [
-    //             ...recipe.steps, { [e.target.name]:e.target.value }
-    //         ]
-    //     })
-    // }
-    // const stepsMapper = () => {
-    //     {
-    //     return recipe.steps.map((step, index) =>{
-    //         const stepNumber = index+1
-    //         return( 
-    //         <div key={index}>
-    //             <textarea
-    //                 name={stepNumber}
-    //                 placeholder={stepNumber}
-    //                 value={recipe.steps[stepNumber]}
-    //                 onChange={handleChange}
-    //             />
-    //         </div>
-    //         )
-    //     })
-    //     }
-    // }
-
-    const handleRemoveStep = () => {
-
+    addIngredientInputs = () => {
+        this.setState((prev) => {
+            return {
+              ...prev,
+              ingredients: [...prev.ingredients, { name: "", amount:"" }],
+            };
+          });
     }
 
+    renderIngredientInputs = () => {
+        return this.state.ingredients.map((ingredient, index) => {
+          return (
+       
+                <div key={`name ${index}`} className="form-group">
+            
+                <input
+                    value={ingredient.name}
+                    onChange={(e) => this.handleIngredientChange(e, index)}
+                />
+                <div key={`amount ${index}`}>
+                <input
+                    value={ingredient.amount}
+                    onChange={(e) => this.handleIngredientChange(e, index)}
+                />
+                </div>
+            </div>
+          );
+        });
+      };
 
-    const stepsMapper = () => {
-        
-        return (
-        <div>
-        {fields.map((item, index) => (
-          <div key={item.id}>
-            <input
-            type="textarea"
-            name={recipe.steps} 
-            onChange={handleChange} 
-            style={smallertextareastyle} 
-            defaultValue={`Step ${index +1} `} 
-            ref={register()}/>
-            <button onClick={() => remove(index)}>Delete</button>
-          </div>
-        ))}
-      <section>
-        <button type="button" onClick={() => append({ name: "step" })} >
-          Add step
-        </button>
-      </section>
-      </div>
-        )
-    }
+      handleIngredientChange = (e, ingredientIndex) => {
+        let newIngredient = e.target.value;
+        this.setState((prev) => {
+          return {
+            ...prev,
+            ingredients: prev.steps.map((ingredient, index) => {
+              if (index == ingredientIndex) {
+                return { ...ingredient, name: newIngredient };
+              }
+              return ingredient;
+            }),
+          };
+        });
+      };
 
 
+    addStepInputs = () => {
+        this.setState((prev) => {
+          return {
+            ...prev,
+            steps: [...prev.steps, { step_summary: "" }],
+          };
+        });
+      };
+      renderStepInputs = () => {
+        return this.state.steps.map((step, index) => {
+          return (
+            <div key={index} className="form-group">
+          
+              <input
+                value={step.step_summary}
+                onChange={(e) => this.handleStepChange(e, index)}
+              />
+            </div>
+          );
+        });
+      };
+      handleStepChange = (e, stepIndex) => {
+        let newStep = e.target.value;
+        this.setState((prev) => {
+          return {
+            ...prev,
+            steps: prev.steps.map((step, index) => {
+              if (index == stepIndex) {
+                return { ...step, title: newStep };
+              }
+              return step;
+            }),
+          };
+        });
+      };
 
 
-  const { register, control, handleSubmit } = useForm({
-    // defaultValues: {}; you can populate the fields by this attribute 
-  });
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: "test"
-  });
-  
+  render(){
+    const maxChars = 80
+    const smallertextareastyle={
+        padding: "9px", 
+        boxSizing: "border-box", 
+        fontSize: "15px", 
+        minHeight: "75px",
+        minWidth: "100px"
+  } 
   return (
       <div>
           <h1>Add a new recipe!</h1>
-    <form onSubmit={handleSubmit(data => console.log("data", data))}>
+    <form >
         <label>Title</label>
         <br></br>
-        <input onChange={handleChange} name="title" placeholder="Title" ref={register}></input>
+        <input onChange={this.handleChange} name="title" placeholder="Title" ></input>
+        <br></br>
         <br></br>
         <label>Upload image</label>
         <br></br>
-        <input onChange={handleChange} type="file" name="image_url" accept="image/*" ref={register}/>
+        <input onChange={this.handleChange} type="file" name="image_url" accept="image/*" />
         <br></br>
         <label>Summary</label>
         <br></br>
-        <textarea onChange={handleChange} placeholder="80 characters max" type="textarea" name="summaryt" style={smallertextareastyle} ref={register}/>
+        <textarea onChange={this.handleChange} placeholder="80 characters max" type="textarea" name="summary" style={smallertextareastyle} />
         <br></br>
+        <label>Ingredients</label>
+      {this.renderIngredientInputs()}
+      <button type="button" onClick={()=> this.addIngredientInputs()}>+ Add Ingredient</button>
+      <br></br>
         <label>Steps</label>
-      {stepsMapper()}
+      {this.renderStepInputs()}
+      <button type="button" onClick={()=> this.addStepInputs()}>+ Add Step</button>
       <br></br>
-      <button onClick={(e)=> {addStepToRecipe(e)}}>Add Step</button>
-      <br></br>
-      <input type="submit"></input>
+     
+      <input onSubmit={this.handleSubmit()} type="submit"></input>
     </form>
     </div>
   );
-
-
+  }
 }
 
 

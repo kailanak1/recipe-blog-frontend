@@ -127,7 +127,7 @@ addRecipe = (event) => {
 
 
   render(){
-    console.log(this.state.newestThree)
+   
     return (
       // <Provider store={store}>
       <div className="App">
