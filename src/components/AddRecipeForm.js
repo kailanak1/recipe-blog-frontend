@@ -15,9 +15,7 @@ class AddRecipeForm extends React.Component {
         ingredients: [
             {name: "", amount: ""}
         ],
-        steps: [
-            {step_summary: ""}
-        ],
+        steps: [],
         tags: ""
         }
     }
@@ -47,14 +45,14 @@ class AddRecipeForm extends React.Component {
                 className="form-group">
             
                 <input
-                    value={ingredient.name}
+                    value={this.state.ingredients[index]}
                     onChange={(e) => this.handleIngredientNameChange(e, index)}
                     placeholder="name"
                     name="name"
                 />
 
                 <input
-                    value={ingredient.amount}
+                    value={this.state.ingredients[index].amount}
                     onChange={(e) => this.handleIngredientAmountChange(e, index)}
                     placeholder="amount"
                     name="amount"
@@ -100,7 +98,7 @@ class AddRecipeForm extends React.Component {
         this.setState((prev) => {
           return {
             ...prev,
-            steps: [...prev.steps, { step_summary: "" }],
+            steps: [...prev.steps, ""],
           };
         });
       };
@@ -119,8 +117,8 @@ class AddRecipeForm extends React.Component {
               <textarea
                 placeholder={`Step${index+1}`}
                 style={textareastyle}
-                name="step_summary"
-                value={step.step_summary}
+                name="rec_steps"
+                // value={this.state.steps[index]}
                 onChange={(e) => this.handleStepChange(e, index)}
               />
             </div>
@@ -134,7 +132,7 @@ class AddRecipeForm extends React.Component {
             ...prev,
             steps: prev.steps.map((step, index) => {
               if (index == stepIndex) {
-                return { ...step, step_summary: newStep };
+                return { ...step, step_summary: newStep};
               } 
               return step;
             }),
@@ -153,7 +151,7 @@ class AddRecipeForm extends React.Component {
     }
 
   render(){
-      console.log(this.props)
+      console.log(this.state)
     const maxChars = 80
     const smallertextareastyle={
         padding: "9px", 

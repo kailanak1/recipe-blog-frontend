@@ -91,14 +91,15 @@ logout = () => {
 
 
 addRecipe = (event) => {
- 
+ console.log(event)
+ console.log(event.target.rec_steps.value)
   let newRecipe = {
     title: event.target.title.value,
     main_pic: event.target.main_pic.value, 
     summary: event.target.summary.value,
-    ingredients: [{name: event.target.name.value, amount: event.target.amount.value}],
-    steps: event.target.steps,
-    tags: event.target.tags.value,
+    // ingredient_name: [{name: event.target.name.value, amount: event.target.amount.value}],
+    rec_steps: event.target.rec_steps.value,
+    rec_tags: event.target.tags.value,
     user_id: this.state.auth.user.id
     //use token user_id
   }
