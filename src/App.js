@@ -90,40 +90,43 @@ logout = () => {
 };
 
 
-addRecipe = (event) => {
- console.log(event)
- console.log(event.target.rec_steps.value)
-  let newRecipe = {
-    title: event.target.title.value,
-    main_pic: event.target.main_pic.value, 
-    summary: event.target.summary.value,
-    // ingredient_name: [{name: event.target.name.value, amount: event.target.amount.value}],
-    rec_steps: event.target.rec_steps.value,
-    rec_tags: event.target.tags.value,
-    user_id: this.state.auth.user.id
-    //use token user_id
-  }
-  console.log(newRecipe)
-  fetch("http://localhost:3000/api/v1/recipes", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      Authorization: localStorage.getItem("token")
-    }, 
-    body: JSON.stringify(newRecipe)
-  })
-  .then(resp => resp.json())
-  .then(data => 
-    console.log(data))
-  }
+addRecipe = (newRecipeState) => {
+//  console.log(event)
+//  console.log(event.target.ingredients)
+//   let ingredient_array = []
 
-  spliceForLanding = () => {
-    let newest = this.state.recipes.splice(-1, 3)
+  let newRecipe = {
+    title: newRecipeState.title,
+    main_pic: newRecipeState.main_pic, 
+    summary: newRecipeState.summary,
+    ingredients: newRecipeState.ingredients,
+    steps: newRecipeState.steps,
+    tags: newRecipeState.tags,
+    user_id: this.state.auth.user.id
+  //   //use token user_id
+  }
+  console.log(newRecipeState)
+  
+  // fetch("http://localhost:3000/api/v1/recipes", {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     Accept: "application/json",
+  //     Authorization: localStorage.getItem("token")
+  //   }, 
+  //   body: JSON.stringify(newRecipe)
+  // })
+  // .then(resp => resp.json())
+  // .then(data => 
+  //   console.log(data))
+  // }
+
+  // spliceForLanding = () => {
+  //   let newest = this.state.recipes.splice(-1, 3)
     
-    this.setState({
-      newestThree: newest
-    })
+  //   this.setState({
+  //     newestThree: newest
+  //   })
   }
 
 

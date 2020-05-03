@@ -16,7 +16,7 @@ class AddRecipeForm extends React.Component {
             {name: "", amount: ""}
         ],
         steps: [],
-        tags: ""
+        tags: []
         }
     }
 
@@ -25,6 +25,13 @@ class AddRecipeForm extends React.Component {
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
+        })
+    }
+
+    handleTagChange = (event) => {
+        let recTags = event.target.value.split(', ')
+        this.setState({
+            tags: recTags
         })
     }
 
@@ -143,7 +150,7 @@ class AddRecipeForm extends React.Component {
     handleSumbit = (e) => {
         e.preventDefault()
         if(!e.title){
-        this.props.onAddRecipe(e)
+        this.props.onAddRecipe(this.state)
         this.props.history.push('/')
         }else{
             window.alert("Please add a title")
@@ -188,7 +195,7 @@ class AddRecipeForm extends React.Component {
       <br></br>
       <label>Tags</label>
       <br></br>
-      <input onChange={this.handleChange} name="tags" placeholder="tags separated by a comma"></input>
+      <input onChange={this.handleTagChange } name="tags" placeholder="tags separated by a comma"></input>
      <br></br>
     <input type="submit" textContent="Publish Recipe"></input>
     </Form>
