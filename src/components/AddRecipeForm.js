@@ -45,7 +45,7 @@ class AddRecipeForm extends React.Component {
                 className="form-group">
             
                 <input
-                    value={this.state.ingredients[index]}
+                    value={this.state.ingredients[index].name}
                     onChange={(e) => this.handleIngredientNameChange(e, index)}
                     placeholder="name"
                     name="name"
