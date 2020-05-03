@@ -124,6 +124,28 @@ addRecipe = (event) => {
     })
   }
 
+  // editRecipe = (recipe_id) => {
+  //   let editedRecipe = {
+  //     title: event.target.title.value, 
+  //     summary: event.target.summary.value,
+  //     ingredient_name: event.target.ingredients.value,
+  //     rec_steps: event.target.steps.value,
+  //     rec_tags: event.target.tags.value,
+  //     user_id: this.state.auth.user.id
+  //     //use token user_id
+  //   }
+  //   fetch(`http://localhost:3000/api/v1/recipes/${recipe_id}`,{
+  //     method: "PUTS", 
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     Accept: "application/json",
+  //     Authorization: localStorage.getItem("token")
+  //     },
+  //    }).then(resp => resp.json())
+  //       .then(data => 
+  //         console.log(data))
+  // }
+
 
 
   render(){

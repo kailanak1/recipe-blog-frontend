@@ -5,7 +5,7 @@ class AddRecipeForm extends React.Component{
    
             state = {
                 title:"",
-                image_url: "",
+                main_pic: "",
                 summary: "",
                 ingredients: "",
                 steps: [],
@@ -44,11 +44,11 @@ class AddRecipeForm extends React.Component{
         })
     }
 
-    // handleImgChange = (e) => {
-    //     this.setState({
-    //         image_url: e.target.value
-    //     })
-    // }
+    handleImgChange = (e) => {
+        this.setState({
+            main_pic: e.target.value
+        })
+    }
 
     handleSummaryChange = (e) => {
         this.setState({
@@ -122,12 +122,9 @@ class AddRecipeForm extends React.Component{
    handleSumbit = (e) => {
        console.log("handleSubmit was hit")
        e.preventDefault()
-       if(!!e.title){
        this.props.onAddRecipe(e)
        this.props.history.push('/')
-       }else{
-           window.alert("Please add a title")
-       }
+      
 
    }
 
@@ -157,11 +154,11 @@ class AddRecipeForm extends React.Component{
                  <label>Title</label>
                  <br></br>
                  <input  placeholder="Title" onChange={ e => this.handleTitleChange(e)} name="title" value={title}></input>
-                 {/* <br></br>
+                 <br></br>
                  <br></br>
                  <label>Picture</label>
                  <br></br>
-                 <input type="text" name="picture" placeholder="image url" onChange={e=> {this.handleImgChange(e)}}></input> */}
+                 <input type="file" onChange={e=> this.handleImgChange(e)}></input>
                  <br></br>
                  <br></br>
                  <label>Summary</label>
