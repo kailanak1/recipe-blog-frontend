@@ -15,26 +15,32 @@ const handleClick = () =>  {
 }
 
 const ingredientsMapper = () => {
-    let ingredients = props.recipe.ingredient_name 
-    if (ingredients){
-        return ingredients.split(",").map((ingredient, index) => {
-            return <ListGroup key ={index} className="list-group-item">
-                <ListGroup.Item>{ingredient}</ListGroup.Item>
+    let ingredients = props.recipe.ingredients
+    if(ingredients){
+        return ingredients.map((ingredient, index) => {
+            return <ListGroup>
+                <ListGroup.Item key={index}>{`${ingredient.amount} ${ingredient.name}`}</ListGroup.Item>
             </ListGroup>
         })
-
-    } else {
-        return "No ingredients..."
     }
 }
 
 const stepsMapper = () => {
-    let steps = props.recipe.rec_steps
+    let steps = props.recipe.steps
     if(steps){
-        return steps.split("\n").map((step, index) => {
-            return <ListGroup key={index} className="list-group-item">
-                <ListGroup.Item>{step}</ListGroup.Item>
+        return steps.map((step, index) => {
+            return <ListGroup>
+                <ListGroup.Item key={index}>{`Step ${index+1}. ${step.step_summary}`}</ListGroup.Item>
             </ListGroup>
+        })
+    } 
+}
+
+const tagsMapper = () => {
+    let tags = props.recipe.tags
+    if(tags){
+        return tags.map((tag)=> {
+            return `${tag.name} `
         })
     }
 }
@@ -65,7 +71,7 @@ return(
         {props.recipe.steps ? <div>{stepsMapper()}</div> : "No steps given"}
         <br></br>
 
-        <small>Tags: {props.recipe.rec_tags ?  props.recipe.rec_tags : "No tags"  }</small>
+        <small>Tags: {props.recipe.tags ?  <div>{tagsMapper()}</div> : "No tags"  }</small>
 
         <br></br>
         <br></br>
