@@ -12,20 +12,7 @@ const handleClick = () =>  {
     props.goBack()
 }
 
-// const ingredientsMapper = () => {
-//     let ingredients = props.recipe.ingredients  
-//     console.log(ingredients)
-//     if (ingredients){
-//         return ingredients.split(",").map((ingredient, index) => {
-//             return <ListGroup key ={index} className="list-group-item">
-//                 <ListGroup.Item>{ingredient}</ListGroup.Item>
-//             </ListGroup>
-//         })
 
-//     } else {
-//         return "No ingredients..."
-//     }
-// }
 
 const ingredientsMapper = () => {
     let ingredients = props.recipe.ingredients
@@ -55,7 +42,11 @@ const stepsMapper = () => {
 
 const tagsMapper = () => {
     let tags = props.recipe.tags
-    console.log(tags)
+    if(tags){
+        return tags.map((tag)=> {
+            return `${tag.name} `
+        })
+    }
 }
 
 
