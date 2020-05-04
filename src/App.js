@@ -94,39 +94,42 @@ addRecipe = (newRecipeState) => {
 //  console.log(event)
 //  console.log(event.target.ingredients)
 //   let ingredient_array = []
+let string_steps = newRecipeState.steps.map(step => {
+  return step.step_summary
+})
 
   let newRecipe = {
     title: newRecipeState.title,
     main_pic: newRecipeState.main_pic, 
     summary: newRecipeState.summary,
     ingredients: newRecipeState.ingredients,
-    steps: newRecipeState.steps,
+    rec_steps: string_steps,
     tags: newRecipeState.tags,
     user_id: this.state.auth.user.id
   //   //use token user_id
   }
   console.log(newRecipeState)
   
-  // fetch("http://localhost:3000/api/v1/recipes", {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     Accept: "application/json",
-  //     Authorization: localStorage.getItem("token")
-  //   }, 
-  //   body: JSON.stringify(newRecipe)
-  // })
-  // .then(resp => resp.json())
-  // .then(data => 
-  //   console.log(data))
-  // }
+  return fetch("http://localhost:3000/api/v1/recipes", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: localStorage.getItem("token")
+    }, 
+    body: JSON.stringify(newRecipe)
+  })
+  .then(resp => resp.json())
+  .then(data => 
+    console.log(data))
+  }
 
-  // spliceForLanding = () => {
-  //   let newest = this.state.recipes.splice(-1, 3)
+  spliceForLanding = () => {
+    let newest = this.state.recipes.splice(-1, 3)
     
-  //   this.setState({
-  //     newestThree: newest
-  //   })
+    this.setState({
+      newestThree: newest
+    })
   }
 
 

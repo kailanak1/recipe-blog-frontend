@@ -149,9 +149,9 @@ class AddRecipeForm extends React.Component {
 
     handleSumbit = (e) => {
         e.preventDefault()
-        if(!e.title){
-        this.props.onAddRecipe(this.state)
-        this.props.history.push('/')
+        if(e.target.title.value){
+            this.props.onAddRecipe(this.state)
+            this.props.history.push('/')
         }else{
             window.alert("Please add a title")
         }
