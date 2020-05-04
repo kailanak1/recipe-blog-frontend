@@ -27,32 +27,36 @@ const ingredientsMapper = () => {
     }
 }
 
-// const stepsMapper = () => {
-//     let steps = props.recipe.rec_steps
-//     if(steps){
-//         return steps.split("\n").map((step, index) => {
-//             return <ListGroup variant="flush" key={index} className="list-group-item">
-//                 <ListGroup.Item>{step}</ListGroup.Item>
-//             </ListGroup>
-//         })
-//     }
-// }
-
 const stepsMapper = () => {
-    let steps = props.recipe.rec_steps 
-    console.log(steps)
-    if(steps.length > 1){
-        return steps.map((step, index) => {
-            return <ListGroup variant="flush" key={index}>
+    let steps = props.recipe.rec_steps
+    if(steps){
+        return steps.split("\n").map((step, index) => {
+            return <ListGroup variant="flush" key={index} className="list-group-item">
                 <ListGroup.Item>{step}</ListGroup.Item>
             </ListGroup>
         })
-    } else {
-        return <ListGroup>
-            <ListGroup.Item>{steps}</ListGroup.Item>
-        </ListGroup>
     }
 }
+
+// const stepsMapper = () => {
+//     let steps = props.recipe.rec_steps 
+//     console.log(steps)
+//     // if(steps && Array.isArray(steps)){
+//     //     if(steps.length > 1){
+//     //     return steps.map((step, index) => {
+//     //         return <ListGroup variant="flush" key={index}>
+//     //             <ListGroup.Item>{step}</ListGroup.Item>
+//     //         </ListGroup>
+//     //     })
+//     //     } else {
+//     //         return <ListGroup>
+//     //             <ListGroup.Item>{steps[0]}</ListGroup.Item>
+//     //         </ListGroup>
+//     //     }
+//     // } else {
+//     //     return <p>Loading</p>
+//     // }
+// }
 
 return(
     !props.show ? <div></div> : 

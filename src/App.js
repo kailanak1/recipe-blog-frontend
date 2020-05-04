@@ -94,16 +94,14 @@ addRecipe = (newRecipeState) => {
 //  console.log(event)
 //  console.log(event.target.ingredients)
 //   let ingredient_array = []
-let string_steps = newRecipeState.steps.map(step => {
-  return step.step_summary
-})
+
 
   let newRecipe = {
     title: newRecipeState.title,
     main_pic: newRecipeState.main_pic, 
     summary: newRecipeState.summary,
     ingredients: newRecipeState.ingredients,
-    rec_steps: string_steps,
+    steps: newRecipeState.steps,
     tags: newRecipeState.tags,
     user_id: this.state.auth.user.id
   //   //use token user_id
