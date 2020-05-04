@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button'
 
 
 const RecipeDetail = props => {
-console.log(props.recipe.ingredient_name )
+
 
 
 const handleClick = () =>  {
@@ -13,7 +13,7 @@ const handleClick = () =>  {
 }
 
 const ingredientsMapper = () => {
-    let ingredients = props.recipe.ingredient_name 
+    let ingredients = props.recipe.ingredients  
     console.log(ingredients)
     if (ingredients){
         return ingredients.split(",").map((ingredient, index) => {
@@ -27,14 +27,30 @@ const ingredientsMapper = () => {
     }
 }
 
+// const stepsMapper = () => {
+//     let steps = props.recipe.rec_steps
+//     if(steps){
+//         return steps.split("\n").map((step, index) => {
+//             return <ListGroup variant="flush" key={index} className="list-group-item">
+//                 <ListGroup.Item>{step}</ListGroup.Item>
+//             </ListGroup>
+//         })
+//     }
+// }
+
 const stepsMapper = () => {
-    let steps = props.recipe.rec_steps
-    if(steps){
-        return steps.split("\n").map((step, index) => {
-            return <ListGroup variant="flush" key={index} className="list-group-item">
+    let steps = props.recipe.rec_steps 
+    console.log(steps)
+    if(steps.length > 1){
+        return steps.map((step, index) => {
+            return <ListGroup variant="flush" key={index}>
                 <ListGroup.Item>{step}</ListGroup.Item>
             </ListGroup>
         })
+    } else {
+        return <ListGroup>
+            <ListGroup.Item>{steps}</ListGroup.Item>
+        </ListGroup>
     }
 }
 
