@@ -45,6 +45,13 @@ class AddRecipeForm extends React.Component {
             };
           });
     }
+    removeIngredientInput = (e, ingredientIndex) => {
+      e.preventDefault()
+      console.log(ingredientIndex)
+      this.setState({
+        ingredients: this.state.ingredients.filter((ingredient, removedIngredient) => removedIngredient !== ingredientIndex )
+      })
+    }
 
     renderIngredientInputs = () => {
         return this.state.ingredients.map((ingredient, index) => {
@@ -66,6 +73,7 @@ class AddRecipeForm extends React.Component {
                     placeholder="amount"
                     name="amount"
                 />
+                <button onClick={(e)=>this.removeIngredientInput(e,index)}>{`Delete Ingredient`}</button>
             </div>
           );
         });
