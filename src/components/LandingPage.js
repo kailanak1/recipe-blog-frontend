@@ -28,7 +28,7 @@ constructor(props){
      
         return(
             <div>
-            <h1>Welcome to Recipe (not) Blog</h1>
+            <h1>Welcome to Show Me the Recipe!</h1>
             Here you can find recipes, not blogs. 
           
             </div>

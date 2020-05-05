@@ -82,7 +82,6 @@ return(
         <br></br>
 
         <Button onClick={() => editRecipe(props.recipe.id)}>Edit</Button>
-        
       <Button variant="warning" onClick={() => deleteRecipe(props.recipe.id)}>Delete</Button>
 
         <br></br>

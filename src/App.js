@@ -91,10 +91,6 @@ logout = () => {
 
 
 addRecipe = (newRecipeState) => {
-//  console.log(event)
-//  console.log(event.target.ingredients)
-//   let ingredient_array = []
-
 
   let newRecipe = {
     title: newRecipeState.title,

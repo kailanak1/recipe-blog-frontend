@@ -4,6 +4,8 @@ import { api } from '../services/api'
 import RecipeProfileDetail from './ProfileRecipeDetail'
 import Card from 'react-bootstrap/Card'
 import EditForm from './EditForm'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
+
 
 class Profile extends React.Component{
     constructor(){
@@ -117,14 +119,14 @@ class Profile extends React.Component{
     }
 
     showForm = () => {
-        console.log("form is rendered")
+        return <EditForm />
     }
 
     profileRender = () => {
-        if (this.state.detail && !this.state.form){
-            this.showDetail()
-        } else if (!this.state.detail && this.state.form){
-            this.showForm()
+        if (!!this.state.detail && !this.state.form){
+            return <RecipeProfileDetail {...this.props} recipe={this.state.meal} goBack = {this.goBack} show={this.state.detail} delete={this.handleDelete} edit={this.handleEdit} style={{display:'block'}}/>
+        } else if (!!this.state.detail && !!this.state.form){
+            return <EditForm/>
         } else if (!this.state.detail && !this.state.form){
             this.recipeMapper()
         } else {
@@ -142,8 +144,8 @@ class Profile extends React.Component{
         return(
             <div>
                 <h1>{this.props.appState.auth.user.username}'s Recipes</h1>
-                {/* {this.state.detail ? this.showDetail() : this.recipeMapper()} */}
-                {this.profileRender()}
+                {this.state.detail ? this.showDetail() : this.recipeMapper()}
+                {/* {this.profileRender()} */}
 
             </div>
         )

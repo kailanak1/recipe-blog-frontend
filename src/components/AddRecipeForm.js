@@ -4,6 +4,8 @@ import { useForm, useFieldArray } from "react-hook-form";
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card'; 
+
 
 
 
@@ -60,11 +62,12 @@ class AddRecipeForm extends React.Component {
                 <div key={`name ${index}`} 
                 className="form-group">
             
-                <input
+                <input className="mb-3"
                     value={this.state.ingredients[index].name}
                     onChange={(e) => this.handleIngredientNameChange(e, index)}
                     placeholder="name"
                     name="name"
+                    style={{border:"none", padding:"2px 2px", borderBottom:"1px solid black"}}
                 />
 
                 <input
@@ -72,8 +75,11 @@ class AddRecipeForm extends React.Component {
                     onChange={(e) => this.handleIngredientAmountChange(e, index)}
                     placeholder="amount"
                     name="amount"
+                    style={{border:"none", padding:"2px 2px", borderBottom:"1px solid black"}}
                 />
-                <button onClick={(e)=>this.removeIngredientInput(e,index)}>{`Delete Ingredient`}</button>
+            
+                <Button variant="outline-secondary" onClick={(e)=>this.removeIngredientInput(e,index)}>{`Delete Ingredient`}</Button>
+              
             </div>
           );
         });
@@ -190,10 +196,16 @@ class AddRecipeForm extends React.Component {
   return (
       <div>
           <h1>Add a new recipe!</h1>
+          <Card className="ui-card">
     <Form onSubmit={this.handleSumbit} >
         <label>Title</label>
         <br></br>
-        <input onChange={this.handleChange} name="title" placeholder="Title" ></input>
+        <input onChange={this.handleChange}
+         name="title" 
+         placeholder="Title"
+         style={{border:"none", padding:"2px 2px", borderBottom:"1px solid black"}}
+         >
+        </input>
         <br></br>
         <br></br>
         <label>Upload image</label>
@@ -208,16 +220,23 @@ class AddRecipeForm extends React.Component {
       {this.renderIngredientInputs()}
       <button type="button" onClick={()=> this.addIngredientInputs()}>+ Add Ingredient</button>
       <br></br>
+      <br></br>
         <label>Steps</label>
+        <br></br>
       {this.renderStepInputs()}
       <button type="button" onClick={()=> this.addStepInputs()}>+ Add Step</button>
       <br></br>
       <label>Tags</label>
       <br></br>
-      <input onChange={this.handleTagChange } name="tags" placeholder="tags separated by a comma"></input>
+      <input 
+      onChange={this.handleTagChange } 
+      name="tags" 
+      placeholder="tags separated by a comma"
+      style={{border:"none", padding:"2px 2px", borderBottom:"1px solid black", minWidth:"400 px"}}></input>
      <br></br>
     <input type="submit"></input>
     </Form>
+    </Card>
     </div>
   );
   }

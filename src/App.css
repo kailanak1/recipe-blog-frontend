@@ -42,9 +42,19 @@
   margin: 0 auto; /* Added */
   float: none; /* Added */
   margin-bottom: 10px; /* Added */
+  flex: 1;
+  flex-direction: 'row';
+  background-color: '#eaf6f8';
+  border-radius: 10;
+  box-shadow: 3px 3 px 5px 6px rgb(14, 14, 14) ;
+  border-width: 3;
 }
 
 .list-group-item {
   padding: 2px;
 }
 
+input[type=text] {
+  box-sizing: border-box;
+  
+}
