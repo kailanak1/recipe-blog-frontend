@@ -2,6 +2,8 @@ import React, {useReducer, useState} from 'react'
 
 import { useForm, useFieldArray } from "react-hook-form";
 import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Button from 'react-bootstrap/Button';
 
 
 
@@ -125,7 +127,6 @@ class AddRecipeForm extends React.Component {
                 placeholder={`Step${index+1}`}
                 style={textareastyle}
                 name="rec_steps"
-                // value={this.state.steps[index]}
                 onChange={(e) => this.handleStepChange(e, index)}
               />
             </div>

@@ -46,9 +46,9 @@ class Profile extends React.Component{
 
     showDetail = () => {
         if (this.state.detail === false) {
-          return <RecipeProfileDetail {...this.props} recipe={this.state.meal} goBack = {this.goBack} style={{display: "none"}} show={this.state.detail} edit = {this.handleEdit} delete={this.handleDelete}/>
+          return <RecipeProfileDetail {...this.props} recipe={this.state.meal} goBack = {this.goBack} style={{display: "none"}} show={this.state.detail} edit={this.handleEdit} delete={this.handleDelete}/>
         } else {
-          return <RecipeProfileDetail {...this.props} recipe={this.state.meal} goBack = {this.goBack} show={this.state.detail} delete={this.handleDelete} edit = {this.handleEdit} style={{display:'block'}}/>}
+          return <RecipeProfileDetail {...this.props} recipe={this.state.meal} goBack = {this.goBack} show={this.state.detail} delete={this.handleDelete} edit={this.handleEdit} style={{display:'block'}}/>}
       }
 
       handleClick = (meal) => {
@@ -58,6 +58,15 @@ class Profile extends React.Component{
               meal: meal
             }
           }, () => this.showDetail)
+        }
+
+        handleEdit = (meal) => {
+            this.setState(prev => {
+                return {
+                    form: !prev.form, 
+                    meal: meal 
+                }
+            }, () => this.showForm)
         }
 
 
@@ -107,12 +116,21 @@ class Profile extends React.Component{
         
     }
 
-    // handleEdit = (e) => {
-    //     let editedRecipe = {
+    showForm = () => {
+        console.log("form is rendered")
+    }
 
-    //     }
-    // }
-
+    profileRender = () => {
+        if (this.state.detail && !this.state.form){
+            this.showDetail()
+        } else if (!this.state.detail && this.state.form){
+            this.showForm()
+        } else if (!this.state.detail && !this.state.form){
+            this.recipeMapper()
+        } else {
+            this.recipeMapper()
+        }
+    }
 
    
 
@@ -124,7 +142,9 @@ class Profile extends React.Component{
         return(
             <div>
                 <h1>{this.props.appState.auth.user.username}'s Recipes</h1>
-                {this.state.detail ? this.showDetail() : this.recipeMapper()}
+                {/* {this.state.detail ? this.showDetail() : this.recipeMapper()} */}
+                {this.profileRender()}
+
             </div>
         )
     }

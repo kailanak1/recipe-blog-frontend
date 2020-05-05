@@ -50,6 +50,11 @@ const deleteRecipe = (e) => {
     props.delete(e)
 }
 
+const editRecipe = (e) => {
+    console.log(e)
+    props.edit(e)
+}
+
 
 return(
     !props.show ? <div></div> : 
@@ -76,8 +81,9 @@ return(
         <br></br>
         <br></br>
 
-    <Button>Edit</Button>
-      <Button variant="warning" onClick= {() => deleteRecipe(props.recipe.id)}>Delete</Button>
+        <Button onClick={() => editRecipe(props.recipe.id)}>Edit</Button>
+        
+      <Button variant="warning" onClick={() => deleteRecipe(props.recipe.id)}>Delete</Button>
 
         <br></br>
         
