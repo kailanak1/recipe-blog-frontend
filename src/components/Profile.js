@@ -143,9 +143,19 @@ class Profile extends React.Component{
 
         return(
             <div>
-                <h1>{this.props.appState.auth.user.username}'s Recipes</h1>
-                {this.state.detail ? this.showDetail() : this.recipeMapper()}
-                {/* {this.profileRender()} */}
+               
+
+                <Router>
+
+                    <Route 
+                    exact
+                    path='edit-form'
+                    render={props => <EditForm {...props} profileState={this.state}/>}
+                />
+e 
+               
+                 
+                </Router>
 
             </div>
         )
