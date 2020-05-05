@@ -198,14 +198,16 @@ class AddRecipeForm extends React.Component {
           <h1>Add a new recipe!</h1>
           <Card className="ui-card">
     <Form onSubmit={this.handleSumbit} >
+      <Form.Group>
         <label>Title</label>
         <br></br>
-        <input onChange={this.handleChange}
+        <Form.Control onChange={this.handleChange}
          name="title" 
          placeholder="Title"
          style={{border:"none", padding:"2px 2px", borderBottom:"1px solid black"}}
-         >
-        </input>
+        size="lg"
+        type="text"
+         />
         <br></br>
         <br></br>
         <label>Upload image</label>
@@ -214,7 +216,16 @@ class AddRecipeForm extends React.Component {
         <br></br>
         <label>Summary</label>
         <br></br>
-        <textarea onChange={this.handleChange} placeholder="80 characters max" type="textarea" name="summary" style={smallertextareastyle} />
+        <div class="form-group">
+        <Form.Control as="textarea" rows="3"
+        onChange={this.handleChange} 
+        placeholder="80 characters max"
+         type="textarea" 
+         name="summary" 
+         class="form-control"
+         style={smallertextareastyle}
+         id="ip2" />
+         </div>
         <br></br>
         <label>Ingredients</label>
       {this.renderIngredientInputs()}
@@ -235,6 +246,7 @@ class AddRecipeForm extends React.Component {
       style={{border:"none", padding:"2px 2px", borderBottom:"1px solid black", minWidth:"400 px"}}></input>
      <br></br>
     <input type="submit"></input>
+    </Form.Group>
     </Form>
     </Card>
     </div>

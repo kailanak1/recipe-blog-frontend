@@ -30,7 +30,9 @@ const stepsMapper = () => {
     if(steps){
         return steps.map((step, index) => {
             return <ListGroup>
+                <br></br>
                 <ListGroup.Item key={index}>{`Step ${index+1}. ${step.step_summary}`}</ListGroup.Item>
+                <br></br>
             </ListGroup>
         })
     } 
@@ -70,7 +72,7 @@ return(
 
        
 
-        {props.recipe.ingredient_name ? <div>{ingredientsMapper()}</div> : "No ingredients written"}
+        {props.recipe.ingredients ? <div>{ingredientsMapper()}</div> : "No ingredients written"}
         <br></br>
        
         {props.recipe.steps ? <div>{stepsMapper()}</div> : "No steps given"}
