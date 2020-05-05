@@ -128,7 +128,9 @@ class AddRecipeForm extends React.Component {
                 style={textareastyle}
                 name="rec_steps"
                 onChange={(e) => this.handleStepChange(e, index)}
+                value={step.step_summary}
               />
+              <button onClick={(e)=>this.removeStepInput(e,index)}>{`Delete Step ${index+1}`}</button>
             </div>
           );
         });
@@ -147,6 +149,14 @@ class AddRecipeForm extends React.Component {
           };
         });
       };
+
+      removeStepInput = (e, stepIndex) => {
+        e.preventDefault()
+        console.log(stepIndex)
+        this.setState({
+          steps: this.state.steps.filter((step, removedStep) => removedStep !== stepIndex )
+        })
+      }
 
     handleSumbit = (e) => {
         e.preventDefault()
@@ -198,7 +208,7 @@ class AddRecipeForm extends React.Component {
       <br></br>
       <input onChange={this.handleTagChange } name="tags" placeholder="tags separated by a comma"></input>
      <br></br>
-    <input type="submit" textContent="Publish Recipe"></input>
+    <input type="submit"></input>
     </Form>
     </div>
   );
