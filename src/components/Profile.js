@@ -83,7 +83,8 @@ class Profile extends React.Component{
                 <Fragment>
                     <Card 
                     style={{width: '18rem', border: "1px solid black", cursor: 'pointer'}} 
-                    id={meal.id}  
+                    id={meal.id} 
+                    key={meal.id} 
                     onClick={() => this.handleClick(meal)}>
                         <Card.Img variant="top" src=""></Card.Img>
                   <Card.Body>

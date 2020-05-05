@@ -157,6 +157,12 @@ addRecipe = (newRecipeState) => {
             path='/add-recipe'
             render={props => <AddRecipeForm {...props} onAddRecipe={this.addRecipe}/>}
           />
+
+          <Route 
+            exact 
+            path='/recipes/:id'
+            render={props => <ProfileRecipeDetail {...props}/>}
+          />
   
   
             <Route 
