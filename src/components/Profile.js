@@ -119,7 +119,14 @@ class Profile extends React.Component{
     }
 
     showForm = () => {
-        return <EditForm />
+        if(this.state.form === false){
+            return( 
+             <EditForm style={{display: "none"}}/>)
+            }
+        else{
+            return(
+            <EditForm style={{display: "block"}}/>)
+        }
     }
 
     profileRender = () => {

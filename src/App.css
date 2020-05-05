@@ -48,7 +48,7 @@
   border-radius: 10;
   box-shadow: 3px 3 px 5px 6px rgb(14, 14, 14) ;
   border-width: 3;
-  border-radius: 15px;
+  border-radius: 10px;
 }
 
 
@@ -60,4 +60,12 @@
 input[type=text] {
   box-sizing: border-box;
   margin:10px 0;
+}
+
+#ip2 {
+  border-radius: 10px;
+  border: 1px solid rgb(143, 138, 145);
+  padding: 20px; 
+  width: 200px;
+  height: 15px;    
 }

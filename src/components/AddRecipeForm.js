@@ -138,6 +138,7 @@ class AddRecipeForm extends React.Component {
             <div key={index} className="form-group">
           
               <textarea
+                id="ip2"
                 placeholder={`Step${index+1}`}
                 style={textareastyle}
                 name="rec_steps"
@@ -189,8 +190,8 @@ class AddRecipeForm extends React.Component {
         padding: "9px", 
         boxSizing: "border-box", 
         fontSize: "15px", 
-        minHeight: "75px",
-        minWidth: "100px"
+        minHeight: "173px",
+        minWidth: "271px"
   } 
   
   return (
