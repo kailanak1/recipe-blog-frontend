@@ -65,7 +65,8 @@ class Profile extends React.Component{
         handleEdit = (meal) => {
             this.setState(prev => {
                 return {
-                    form: !prev.form, 
+                    form: !prev.form,
+                    detail: !prev.detail, 
                     meal: meal 
                 }
             }, () => this.showForm)
@@ -129,17 +130,29 @@ class Profile extends React.Component{
         }
     }
 
-    profileRender = () => {
-        if (!!this.state.detail && !this.state.form){
-            return <RecipeProfileDetail {...this.props} recipe={this.state.meal} goBack = {this.goBack} show={this.state.detail} delete={this.handleDelete} edit={this.handleEdit} style={{display:'block'}}/>
-        } else if (!!this.state.detail && !!this.state.form){
-            return <EditForm/>
-        } else if (!this.state.detail && !this.state.form){
+    // profileRender = () => {
+    //     if (!!this.state.detail && !this.state.form){
+    //         return <RecipeProfileDetail {...this.props} recipe={this.state.meal} goBack = {this.goBack} show={this.state.detail} delete={this.handleDelete} edit={this.handleEdit} style={{display:'block'}}/>
+    //     } else if (!!this.state.detail && !!this.state.form){
+    //         return <EditForm/>
+    //     } else if (!this.state.detail && !this.state.form){
+    //         this.recipeMapper()
+    //     } else {
+    //         this.recipeMapper()
+    //     }
+    // }
+ 
+    checkState = () => {
+        if(!this.state.form && this.state.detail){
             this.recipeMapper()
-        } else {
+        }else if(this.state.form && this.state.detail){
+            this.showForm()
+        } else if (!this.state.form && !this.state.detail){
             this.recipeMapper()
         }
     }
+
+
 
    
 
@@ -151,8 +164,8 @@ class Profile extends React.Component{
         return(
             <div>
                 <h1>{this.props.appState.auth.user.username}'s Recipes</h1>
-                {this.state.detail ? this.showDetail() : this.recipeMapper()}
-                {/* {this.profileRender()} */}
+                {this.state.detail && !this.state.form ? this.showDetail(): this.recipeMapper()}
+                {/* {this.checkState()} */}
 
             </div>
         )

@@ -52,7 +52,7 @@ const tagsMapper = () => {
 
 
 return(
-    !props.show ? <div></div> : 
+    !props.show ? <div>"This is the not rendered"</div> : 
 
     <Card style={{width: '36rem'}}>
         <div className="btn-lef" style={{display: 'flex'}}>

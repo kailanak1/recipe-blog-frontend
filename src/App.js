@@ -42,16 +42,16 @@ export default class App extends React.Component {
         this.setState({ auth: updatedState });
       });
     }
-    this.fetchRecipes()
+    // this.fetchRecipes()
   }
 
-  fetchRecipes = () =>{
-    api.recipes.getRecipes().then(data => {
-      this.setState({
-        recipes: data
-      })
-    })
-  }
+  // fetchRecipes = () =>{
+  //   api.recipes.getRecipes().then(data => {
+  //     this.setState({
+  //       recipes: data
+  //     })
+  //   })
+  // }
 
 
   createUser = (event) => {
