@@ -31,7 +31,7 @@ class Login extends React.Component{
 
     handleChange = (event) => {
         const newState = {...this.state.fields, [event.target.name]: event.target.value}
-        console.log(newState)
+      
         this.setState({
                 fields: newState
         })      

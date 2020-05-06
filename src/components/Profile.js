@@ -24,8 +24,8 @@ class Profile extends React.Component{
         api.recipes.getRecipes().then(data => {
             this.setState({
                 recipes: data
-            })
-        })
+            },()=> this.filtermyRecipes())
+        }) 
     }
 
     filtermyRecipes = () => {
@@ -43,7 +43,7 @@ class Profile extends React.Component{
         }, () => {
             this.props.history.push('/profile')
         })
-        console.log("go back was hit")
+        
     }
 
     showDetail = () => {
@@ -75,11 +75,11 @@ class Profile extends React.Component{
 
     recipeMapper = () => {
         const filtered = (this.state.recipes.filter(recipe => recipe.user_id == this.props.appState.auth.user.id))
-        return filtered.reverse().map(meal => {
+        return filtered.reverse().map((meal, index) => {
            
             return (
                 
-                <Fragment>
+                <Fragment key={index}>
                     <Card 
                     style={{width: '18rem', border: "1px solid black", cursor: 'pointer', alignSelf: 'center', boxShadow: '5px .2em 10px #888888'}} 
                     id={meal.id}  
@@ -138,8 +138,7 @@ class Profile extends React.Component{
 
 
     render(){
-        console.log(this.props)
-        console.log(this.state)
+     
 
         return(
             <div>

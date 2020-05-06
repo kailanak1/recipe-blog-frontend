@@ -33,7 +33,7 @@ class RecipeList extends React.Component{
         }, () => {
             this.props.history.push('/recipes')
         })
-        console.log("go back was hit")
+       
     }
 
 
@@ -57,14 +57,15 @@ class RecipeList extends React.Component{
 
     
     recipeMapper = () => {
-        return this.state.recipes.reverse().map(meal => {
+        return this.state.recipes.reverse().map((meal, index) => {
            
             return (
                 
-                <Fragment>
+                <Fragment key={index}>
                     <div className = "ui column">
-                       
+                    
                     <Card 
+                    key={index}
                     style={{width: '18rem', border: "1px solid black", cursor: 'pointer', alignSelf: 'center', boxShadow: '5px .2em 10px #888888'}} 
                     id={meal.id}  
                     onClick={() => this.handleClick(meal)}>
@@ -90,7 +91,7 @@ class RecipeList extends React.Component{
 
 
     render(){
-        console.log(this.state)
+     
         return(
             <div>
                 <h1>Recipes</h1>

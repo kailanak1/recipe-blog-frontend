@@ -49,7 +49,7 @@ class AddRecipeForm extends React.Component {
     }
     removeIngredientInput = (e, ingredientIndex) => {
       e.preventDefault()
-      console.log(ingredientIndex)
+   
       this.setState({
         ingredients: this.state.ingredients.filter((ingredient, removedIngredient) => removedIngredient !== ingredientIndex )
       })
@@ -170,7 +170,7 @@ class AddRecipeForm extends React.Component {
 
       removeStepInput = (e, stepIndex) => {
         e.preventDefault()
-        console.log(stepIndex)
+    
         this.setState({
           steps: this.state.steps.filter((step, removedStep) => removedStep !== stepIndex )
         })
@@ -187,7 +187,7 @@ class AddRecipeForm extends React.Component {
     }
 
   render(){
-      console.log(this.state)
+      
     const maxChars = 80
     const smallertextareastyle={
       padding: "9px", 
@@ -250,7 +250,7 @@ class AddRecipeForm extends React.Component {
               <input 
               onChange={this.handleTagChange } 
               name="tags" 
-              placeholder="tags separated by a comma"
+              placeholder="separated by a comma"
               style={{border:"none", padding:"2px 2px", borderBottom:"1px solid black", minWidth:"400 px"}}></input>
             </div>
             <input type="submit" className="btn btn-secondary"></input>

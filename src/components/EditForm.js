@@ -13,7 +13,7 @@ class EditForm extends React.Component {
 
 
     render(){
-        console.log(this.props)
+       
         return(
             <div>Edit Form</div>
         )

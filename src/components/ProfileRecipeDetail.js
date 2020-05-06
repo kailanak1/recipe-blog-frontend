@@ -48,12 +48,12 @@ const tagsMapper = () => {
 }
 
 const deleteRecipe = (e) => {
-    console.log(e)
+ 
     props.delete(e)
 }
 
 const editRecipe = (e) => {
-    console.log(e)
+   
     props.edit(e)
 }
 
