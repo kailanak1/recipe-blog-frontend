@@ -13,8 +13,6 @@ import Profile from './components/Profile';
 import SignUp from './components/Signup';
 import RecipeList from './components/RecipeList';
 
-
-
 //redux
 import store from './redux/store';
 import {Provider} from 'react-redux';

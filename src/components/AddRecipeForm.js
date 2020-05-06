@@ -137,15 +137,18 @@ class AddRecipeForm extends React.Component {
         return this.state.steps.map((step, index) => {
           return (
             <div key={index} className="form-group">
-          
+          <fieldset>
               <textarea
                 placeholder={`Step${index+1}`}
                 // style={textareastyle}
                 name="rec_steps"
+                id="textArea"
+                className="form-control"
                 onChange={(e) => this.handleStepChange(e, index)}
                 value={step.step_summary}
               />
-              <button onClick={(e)=>this.removeStepInput(e,index)}>{`Delete Step ${index+1}`}</button>
+              <button className="btn btn-secondary" type="button" onClick={(e)=>this.removeStepInput(e,index)}>{`Delete Step ${index+1}`}</button>
+              </fieldset>
             </div>
           );
         });
@@ -196,65 +199,66 @@ class AddRecipeForm extends React.Component {
   } 
   
   return (
-      <div>
-          <h1>Add a new recipe!</h1>
-          <Card className="ui-card">
-    <Form onSubmit={this.handleSumbit} >
-    <fieldset>
-      <Form.Group>
-        <label>Title</label>
-        <br></br>
-        <Form.Control onChange={this.handleChange}
-         name="title" 
-         placeholder="Title"
-        //  style={{border:"none", padding:"2px 2px", borderBottom:"1px solid black"}}
-        size="lg"
-        type="text"
-     
-         />
-        <br></br>
-        <br></br>
-        <label>Upload image</label>
-        <br></br>
-        <input onChange={this.handleChange} type="file" name="main_pic" accept="image/*" />
-        <br></br>
-        <label>Summary</label>
-        <br></br>
-        <div class="form-group">
-        <Form.Control as="textarea" rows="3"
-        onChange={this.handleChange} 
-        placeholder="80 characters max"
-         type="textarea" 
-         name="summary" 
-         class="form-control"
-         style={smallertextareastyle}
-         id="ip2" />
-         </div>
-        <br></br>
-        <label>Ingredients</label>
-      {this.renderIngredientInputs()}
-      <button type="button" onClick={()=> this.addIngredientInputs()}>+ Add Ingredient</button>
-      <br></br>
-      <br></br>
-        <label>Steps</label>
-        <br></br>
-      {this.renderStepInputs()}
-      <button type="button" onClick={()=> this.addStepInputs()}>+ Add Step</button>
-      <br></br>
-      <label>Tags</label>
-      <br></br>
-      <input 
-      onChange={this.handleTagChange } 
-      name="tags" 
-      placeholder="tags separated by a comma"
-      style={{border:"none", padding:"2px 2px", borderBottom:"1px solid black", minWidth:"400 px"}}></input>
-     <br></br>
-    <input type="submit"></input>
-    </Form.Group>
-    </fieldset>
-    </Form>
-    </Card>
-    </div>
+    <div className="row">
+        <div className="col-4"></div>
+        <div className="col-4">
+        <h1>Add a new recipe!</h1>
+        <form onSubmit={this.handleSumbit} >
+          <fieldset>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Title</label>
+              <input 
+                type="email" 
+                class="form-control" 
+                id="exampleInputEmail1" 
+                aria-describedby="emailHelp" 
+                placeholder="Enter title"
+                onChange={this.handleChange}
+                ></input>
+            </div>
+            <div className="form-group">
+              <label for="exampleInputFile">Upload image</label>
+              <input type="file" 
+                className="form-control-file" 
+                id="exampleInputFile" 
+                aria-describedby="fileHelp"
+                onChange={this.handleChange}
+                ></input>
+              <small id="fileHelp" class="form-text text-muted">Please choose image smaller than 1000px</small>
+            </div>
+            <div className="form-group">
+                <label forHtml="textArea">Summary </label>
+                <textarea 
+                  className="form-control"
+                  id="textArea"
+                  rows="3"
+                  onChange={this.handleChange} 
+                  placeholder="80 characters max"></textarea>
+            </div>
+            <div class="form-group">
+              <label>Ingredients</label>
+            {this.renderIngredientInputs()}
+            <button type="button" className="btn btn-primary" onClick={()=> this.addIngredientInputs()}>+ Add Ingredient</button>
+            </div>
+            <div class="form-group">
+              <label forHtml="textArea">Steps</label>
+              {this.renderStepInputs()}
+              <button type="button" className="btn btn-primary" onClick={()=> this.addStepInputs()}>+ Add Step</button>
+            </div>
+            <div class="form-group">
+              <label>Tags</label>
+              <input 
+              onChange={this.handleTagChange } 
+              name="tags" 
+              placeholder="tags separated by a comma"
+              style={{border:"none", padding:"2px 2px", borderBottom:"1px solid black", minWidth:"400 px"}}></input>
+            </div>
+            <input type="submit" className="btn btn-secondary"></input>
+          </fieldset>
+        </form>
+        </div>
+        <div className="col-4"></div>
+  </div>
   );
   }
 }

@@ -63,7 +63,7 @@ class RecipeList extends React.Component{
                 
                 <Fragment>
                     <div className = "ui column">
-                        <div className = "ui card">
+                       
                     <Card 
                     style={{width: '18rem', border: "1px solid black", cursor: 'pointer', alignSelf: 'center', boxShadow: '5px .2em 10px #888888'}} 
                     id={meal.id}  
@@ -79,7 +79,7 @@ class RecipeList extends React.Component{
                     </Card.Body>
                     </Card>
                     <br></br>
-                    </div>
+                
                     </div>
                 </Fragment>
             )
