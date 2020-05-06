@@ -33,15 +33,19 @@ class RecipeList extends React.Component{
         }, () => {
             this.props.history.push('/recipes')
         })
-        console.log("go back was hit")
+       
     }
+
+    // handleFavorite = () => {
+    //     console.log("rec was favorited")
+    // }
 
 
     showDetail = () => {
         if (this.state.detail === false) {
-          return <RecipeDetail {...this.props} recipe={this.state.meal} goBack = {this.goBack} style={{display: "none"}} show={this.state.detail} />
+          return <RecipeDetail {...this.props} recipe={this.state.meal} goBack = {this.goBack} style={{display: "none"}}  show={this.state.detail} />
         } else {
-          return <RecipeDetail {...this.props} recipe={this.state.meal} goBack = {this.goBack} show={this.state.detail} style={{display:'block'}}/>}
+          return <RecipeDetail {...this.props} recipe={this.state.meal} goBack = {this.goBack} show={this.state.detail}  style={{display:'block'}}/>}
       }
 
       handleClick = (meal) => {
@@ -57,15 +61,16 @@ class RecipeList extends React.Component{
 
     
     recipeMapper = () => {
-        return this.state.recipes.reverse().map(meal => {
+        return this.state.recipes.reverse().map((meal, index) => {
            
             return (
                 
-                <Fragment>
+                <Fragment key={index}>
                     <div className = "ui column">
-                        <div className = "ui card">
+                    
                     <Card 
-                    style={{width: '18rem', border: "1px solid black", cursor: 'pointer', alignSelf: 'center'}} 
+                    key={index}
+                    style={{width: '18rem', border: "1px solid black", cursor: 'pointer', alignSelf: 'center', boxShadow: '5px .2em 10px #888888'}} 
                     id={meal.id}  
                     onClick={() => this.handleClick(meal)}>
                         <Card.Img variant="top" src=""></Card.Img>
@@ -79,7 +84,7 @@ class RecipeList extends React.Component{
                     </Card.Body>
                     </Card>
                     <br></br>
-                    </div>
+                
                     </div>
                 </Fragment>
             )
@@ -90,7 +95,7 @@ class RecipeList extends React.Component{
 
 
     render(){
-        console.log(this.state)
+     
         return(
             <div>
                 <h1>Recipes</h1>

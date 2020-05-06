@@ -1,15 +1,24 @@
-import React from 'react'
+import React, {useReducer, useState} from 'react'
 
-export default class EditForm extends React.Component{
+import { useForm, useFieldArray } from "react-hook-form";
+import Form from 'react-bootstrap/Form';
 
-    
+
+
+class EditForm extends React.Component {
+  constructor(){
+      super()
+    }
+
 
 
     render(){
-        console.log(this.props)
-
+       
         return(
-            <div>Edit Your Recipe </div> 
+            <div>Edit Form</div>
         )
     }
+
 }
+
+export default EditForm 

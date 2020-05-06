@@ -4,6 +4,8 @@ import { api } from '../services/api'
 import RecipeProfileDetail from './ProfileRecipeDetail'
 import Card from 'react-bootstrap/Card'
 import EditForm from './EditForm'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
+
 
 class Profile extends React.Component{
     constructor(){
@@ -11,17 +13,19 @@ class Profile extends React.Component{
         this.state = {
             recipes:[], 
             detail: false,
-            myrecipes: []
+            myrecipes: [], 
+            form: false
         }
     }
 
+    //add a render conditional here
 
     componentDidMount(){
         api.recipes.getRecipes().then(data => {
             this.setState({
                 recipes: data
-            })
-        })
+            },()=> this.filtermyRecipes())
+        }) 
     }
 
     filtermyRecipes = () => {
@@ -39,14 +43,14 @@ class Profile extends React.Component{
         }, () => {
             this.props.history.push('/profile')
         })
-        console.log("go back was hit")
+        
     }
 
     showDetail = () => {
         if (this.state.detail === false) {
-          return <RecipeProfileDetail {...this.props} recipe={this.state.meal} goBack = {this.goBack} style={{display: "none"}} show={this.state.detail} edit = {this.handleEdit} delete={this.handleDelete}/>
+          return <RecipeProfileDetail {...this.props} recipe={this.state.meal} goBack = {this.goBack} style={{display: "none"}} show={this.state.detail} edit={this.handleEdit} delete={this.handleDelete}/>
         } else {
-          return <RecipeProfileDetail {...this.props} recipe={this.state.meal} goBack = {this.goBack} show={this.state.detail} delete={this.handleDelete} edit = {this.handleEdit} style={{display:'block'}}/>}
+          return <RecipeProfileDetail {...this.props} recipe={this.state.meal} goBack = {this.goBack} show={this.state.detail} delete={this.handleDelete} edit={this.handleEdit} style={{display:'block'}}/>}
       }
 
       handleClick = (meal) => {
@@ -58,17 +62,26 @@ class Profile extends React.Component{
           }, () => this.showDetail)
         }
 
+        handleEdit = (meal) => {
+            this.setState(prev => {
+                return {
+                    form: !prev.form, 
+                    meal: meal 
+                }
+            }, () => this.showForm)
+        }
+
 
 
     recipeMapper = () => {
         const filtered = (this.state.recipes.filter(recipe => recipe.user_id == this.props.appState.auth.user.id))
-        return filtered.reverse().map(meal => {
+        return filtered.reverse().map((meal, index) => {
            
             return (
                 
-                <Fragment>
+                <Fragment key={index}>
                     <Card 
-                    style={{width: '18rem', border: "1px solid black", cursor: 'pointer'}} 
+                    style={{width: '18rem', border: "1px solid black", cursor: 'pointer', alignSelf: 'center', boxShadow: '5px .2em 10px #888888'}} 
                     id={meal.id}  
                     onClick={() => this.handleClick(meal)}>
                         <Card.Img variant="top" src=""></Card.Img>
@@ -105,24 +118,34 @@ class Profile extends React.Component{
         
     }
 
-    // handleEdit = (e) => {
-    //     let editedRecipe = {
+    showForm = () => {
+        return <EditForm />
+    }
 
-    //     }
-    // }
-
+    profileRender = () => {
+        if (!!this.state.detail && !this.state.form){
+            return <RecipeProfileDetail {...this.props} recipe={this.state.meal} goBack = {this.goBack} show={this.state.detail} delete={this.handleDelete} edit={this.handleEdit} style={{display:'block'}}/>
+        } else if (!!this.state.detail && !!this.state.form){
+            return <EditForm/>
+        } else if (!this.state.detail && !this.state.form){
+            this.recipeMapper()
+        } else {
+            this.recipeMapper()
+        }
+    }
 
    
 
 
     render(){
-        console.log(this.props)
-        console.log(this.state)
+     
 
         return(
             <div>
                 <h1>{this.props.appState.auth.user.username}'s Recipes</h1>
                 {this.state.detail ? this.showDetail() : this.recipeMapper()}
+                {/* {this.profileRender()} */}
+
             </div>
         )
     }

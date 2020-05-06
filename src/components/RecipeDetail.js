@@ -5,38 +5,54 @@ import Button from 'react-bootstrap/Button'
 
 
 const RecipeDetail = props => {
-console.log(props.recipe.ingredient_name )
+
 
 
 const handleClick = () =>  {
     props.goBack()
 }
 
+
+
 const ingredientsMapper = () => {
-    let ingredients = props.recipe.ingredient_name 
-    console.log(ingredients)
-    if (ingredients){
-        return ingredients.split(",").map((ingredient, index) => {
-            return <ListGroup key ={index} className="list-group-item">
-                <ListGroup.Item>{ingredient}</ListGroup.Item>
+    let ingredients = props.recipe.ingredients
+    if(ingredients){
+        return ingredients.map((ingredient, index) => {
+            return <ListGroup>
+                <ListGroup.Item key={index}>{`${ingredient.amount} ${ingredient.name}`}</ListGroup.Item>
             </ListGroup>
         })
-
-    } else {
-        return "No ingredients..."
     }
 }
 
 const stepsMapper = () => {
-    let steps = props.recipe.rec_steps
+    let steps = props.recipe.steps
     if(steps){
-        return steps.split("\n").map((step, index) => {
-            return <ListGroup variant="flush" key={index} className="list-group-item">
-                <ListGroup.Item>{step}</ListGroup.Item>
+        return steps.map((step, index) => {
+            return <ListGroup>
+                <ListGroup.Item key={index}>{`Step ${index+1}. ${step.step_summary}`}</ListGroup.Item>
             </ListGroup>
+        })
+    } else {
+        return <ListGroup>
+                <ListGroup.Item>No Steps</ListGroup.Item>
+            </ListGroup>
+    }
+}
+
+const tagsMapper = () => {
+    let tags = props.recipe.tags
+    if(tags){
+        return tags.map((tag)=> {
+            return `${tag.name} `
         })
     }
 }
+
+const favoriteRecipe = (recipeId) => {
+    props.onFavoriteRecipe(recipeId)
+}
+
 
 return(
     !props.show ? <div></div> : 
@@ -51,16 +67,15 @@ return(
 
         <br></br>
 
-       
-
-        {props.recipe.ingredient_name ? <div>{ingredientsMapper()}</div> : "No ingredients written"}
+        {props.recipe.ingredients ? <div>{ingredientsMapper()}</div> : "No ingredients written"}
         <br></br>
        
         {props.recipe.steps ? <div>{stepsMapper()}</div> : "No steps given"}
         <br></br>
+   
 
-        <small>Tags: {props.recipe.rec_tags ?  props.recipe.rec_tags : "No tags"  }</small>
-
+        <small>Tags: {props.recipe.tags ?  <div>{tagsMapper()}</div> : "No tags"  }</small>
+        <Button onClick={() => favoriteRecipe(props.recipe.id)}>Favorite</Button>
         <br></br>
         <br></br>
 

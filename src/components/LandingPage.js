@@ -17,7 +17,7 @@ constructor(props){
     spliceForLanding = () => {
        
         let newest = this.props.appState.recipes.splice(-1, 3)
-  
+
         this.setState({
           newestThree: newest
         })
@@ -25,11 +25,10 @@ constructor(props){
     
 
     render(){
-        console.log(this.state)
-        console.log(this.props)
+     
         return(
             <div>
-            <h1>Welcome to Recipe (not) Blog</h1>
+            <h1>Welcome to Show Me the Recipe!</h1>
             Here you can find recipes, not blogs. 
           
             </div>

@@ -13,12 +13,15 @@ import Profile from './components/Profile';
 import SignUp from './components/Signup';
 import RecipeList from './components/RecipeList';
 
-
-
 //redux
 import store from './redux/store';
 import {Provider} from 'react-redux';
 import {fetchUsers} from './redux';
+
+//styling 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.js';
+import "bootswatch/dist/minty/bootstrap.min.css";
 
 export default class App extends React.Component {
   constructor() {
@@ -90,19 +93,21 @@ logout = () => {
 };
 
 
-addRecipe = (event) => {
- 
+addRecipe = (newRecipeState) => {
+
   let newRecipe = {
-    title: event.target.title.value, 
-    summary: event.target.summary.value,
-    ingredient_name: event.target.ingredients.value,
-    rec_steps: event.target.steps.value,
-    rec_tags: event.target.tags.value,
+    title: newRecipeState.title,
+    main_pic: newRecipeState.main_pic, 
+    summary: newRecipeState.summary,
+    ingredients: newRecipeState.ingredients,
+    steps: newRecipeState.steps,
+    tags: newRecipeState.tags,
     user_id: this.state.auth.user.id
-    //use token user_id
+  //   //use token user_id
   }
-  console.log(newRecipe)
-  fetch("http://localhost:3000/api/v1/recipes", {
+  console.log(newRecipeState)
+  
+  return fetch("http://localhost:3000/api/v1/recipes", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -149,7 +154,7 @@ addRecipe = (event) => {
 
 
   render(){
-    console.log(this.state.newestThree)
+   
     return (
       // <Provider store={store}>
       <div className="App">
