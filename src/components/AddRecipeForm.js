@@ -54,6 +54,17 @@ class AddRecipeForm extends React.Component {
     }
 
     renderIngredientInputs = () => {
+      const textInputStyle = {
+        border: 'none',
+        padding: '2p 2px',
+        borderBottom: '1px solid gray', 
+
+        "&:focus":{
+          borderRadius: '5px', 
+          border: '1px #78C2AD', 
+          boxShadow: '#78C2AD'
+        }
+      }
         return this.state.ingredients.map((ingredient, index) => {
           return (
        
@@ -63,20 +74,21 @@ class AddRecipeForm extends React.Component {
                 <input className="mb-3"
                     value={this.state.ingredients[index].name}
                     onChange={(e) => this.handleIngredientNameChange(e, index)}
-                    placeholder="name"
+                    placeholder="Name"
                     name="name"
-                    style={{border:"none", padding:"2px 2px", borderBottom:"1px solid gray"}}
+                    style={textInputStyle}
                 />
 
                 <input
                     value={this.state.ingredients[index].amount}
                     onChange={(e) => this.handleIngredientAmountChange(e, index)}
-                    placeholder="amount"
+                    placeholder="Amount"
                     name="amount"
-                    style={{border:"none", padding:"2px 2px", borderBottom:"1px solid gray"}}
+                    style={textInputStyle}
                 />
+                <br></br>
             
-                <Button variant="outline-secondary" onClick={(e)=>this.removeIngredientInput(e,index)}>{`Delete Ingredient`}</Button>
+                <Button variant="outline-secondary" onClick={(e)=>this.removeIngredientInput(e,index)}>{this.state.ingredients[index].name ? `Delete ${this.state.ingredients[index].name}` : `Delete Ingredient`}</Button>
               
             </div>
           );
