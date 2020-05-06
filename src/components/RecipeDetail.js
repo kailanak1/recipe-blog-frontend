@@ -49,6 +49,9 @@ const tagsMapper = () => {
     }
 }
 
+const favoriteRecipe = (recipeId) => {
+    props.onFavoriteRecipe(recipeId)
+}
 
 
 return(
@@ -72,7 +75,7 @@ return(
    
 
         <small>Tags: {props.recipe.tags ?  <div>{tagsMapper()}</div> : "No tags"  }</small>
-
+        <Button onClick={() => favoriteRecipe(props.recipe.id)}>Favorite</Button>
         <br></br>
         <br></br>
 

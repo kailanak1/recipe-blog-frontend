@@ -1,10 +1,8 @@
 import React, {useReducer, useState} from 'react'
 
-import { useForm, useFieldArray } from "react-hook-form";
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
+
 import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card'; 
+
 
 
 
@@ -67,7 +65,7 @@ class AddRecipeForm extends React.Component {
                     onChange={(e) => this.handleIngredientNameChange(e, index)}
                     placeholder="name"
                     name="name"
-                    style={{border:"none", padding:"2px 2px", borderBottom:"1px solid black"}}
+                    style={{border:"none", padding:"2px 2px", borderBottom:"1px solid gray"}}
                 />
 
                 <input
@@ -75,7 +73,7 @@ class AddRecipeForm extends React.Component {
                     onChange={(e) => this.handleIngredientAmountChange(e, index)}
                     placeholder="amount"
                     name="amount"
-                    style={{border:"none", padding:"2px 2px", borderBottom:"1px solid black"}}
+                    style={{border:"none", padding:"2px 2px", borderBottom:"1px solid gray"}}
                 />
             
                 <Button variant="outline-secondary" onClick={(e)=>this.removeIngredientInput(e,index)}>{`Delete Ingredient`}</Button>
@@ -177,13 +175,14 @@ class AddRecipeForm extends React.Component {
       }
 
     handleSumbit = (e) => {
+      console.log(this.state.title)
         e.preventDefault()
-        if(e.target.title.value){
+        // if(this.state.title.length > 1){
             this.props.onAddRecipe(this.state)
             this.props.history.push('/')
-        }else{
-            window.alert("Please add a title")
-        }
+        // }else{
+        //     window.alert("Please add a title")
+        // }
     }
 
   render(){
@@ -206,12 +205,12 @@ class AddRecipeForm extends React.Component {
         <form onSubmit={this.handleSumbit} >
           <fieldset>
             <div class="form-group">
-              <label for="exampleInputEmail1">Title</label>
+              <label for="inputDefault">Title</label>
               <input 
-                type="email" 
+                type="inputDefault" 
+                name="title"
                 class="form-control" 
-                id="exampleInputEmail1" 
-                aria-describedby="emailHelp" 
+                id="inputDefault"
                 placeholder="Enter title"
                 onChange={this.handleChange}
                 ></input>
@@ -223,6 +222,7 @@ class AddRecipeForm extends React.Component {
                 id="exampleInputFile" 
                 aria-describedby="fileHelp"
                 onChange={this.handleChange}
+                name="main_pic"
                 ></input>
               <small id="fileHelp" class="form-text text-muted">Please choose image smaller than 1000px</small>
             </div>
@@ -232,6 +232,7 @@ class AddRecipeForm extends React.Component {
                   className="form-control"
                   id="textArea"
                   rows="3"
+                  name="summary"
                   onChange={this.handleChange} 
                   placeholder="80 characters max"></textarea>
             </div>
@@ -250,8 +251,9 @@ class AddRecipeForm extends React.Component {
               <input 
               onChange={this.handleTagChange } 
               name="tags" 
+            
               placeholder="separated by a comma"
-              style={{border:"none", padding:"2px 2px", borderBottom:"1px solid black", minWidth:"400 px"}}></input>
+              style={{border:"none", padding:"2px 2px", borderBottom:"1px solid gray", minWidth:"400 px"}}></input>
             </div>
             <input type="submit" className="btn btn-secondary"></input>
           </fieldset>
