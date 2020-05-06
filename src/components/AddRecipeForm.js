@@ -131,7 +131,8 @@ class AddRecipeForm extends React.Component {
             boxSizing: "border-box", 
             fontSize: "15px", 
             minHeight: "100px",
-            minWidth: "250px"
+            minWidth: "250px", 
+            borderRadius: "10px"
         }
         return this.state.steps.map((step, index) => {
           return (
@@ -139,7 +140,7 @@ class AddRecipeForm extends React.Component {
           
               <textarea
                 placeholder={`Step${index+1}`}
-                style={textareastyle}
+                // style={textareastyle}
                 name="rec_steps"
                 onChange={(e) => this.handleStepChange(e, index)}
                 value={step.step_summary}
@@ -186,11 +187,12 @@ class AddRecipeForm extends React.Component {
       console.log(this.state)
     const maxChars = 80
     const smallertextareastyle={
-        padding: "9px", 
-        boxSizing: "border-box", 
-        fontSize: "15px", 
-        minHeight: "75px",
-        minWidth: "100px"
+      padding: "9px", 
+      boxSizing: "border-box", 
+      fontSize: "15px", 
+      minHeight: "100px",
+      minWidth: "250px", 
+      borderRadius: "10px"
   } 
   
   return (
@@ -198,15 +200,17 @@ class AddRecipeForm extends React.Component {
           <h1>Add a new recipe!</h1>
           <Card className="ui-card">
     <Form onSubmit={this.handleSumbit} >
+    <fieldset>
       <Form.Group>
         <label>Title</label>
         <br></br>
         <Form.Control onChange={this.handleChange}
          name="title" 
          placeholder="Title"
-         style={{border:"none", padding:"2px 2px", borderBottom:"1px solid black"}}
+        //  style={{border:"none", padding:"2px 2px", borderBottom:"1px solid black"}}
         size="lg"
         type="text"
+     
          />
         <br></br>
         <br></br>
@@ -247,6 +251,7 @@ class AddRecipeForm extends React.Component {
      <br></br>
     <input type="submit"></input>
     </Form.Group>
+    </fieldset>
     </Form>
     </Card>
     </div>
