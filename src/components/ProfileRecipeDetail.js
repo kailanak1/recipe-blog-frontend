@@ -7,7 +7,7 @@ import ListGroup from 'react-bootstrap/ListGroup'
 
 
 const ProfileRecipeDetail = props => {
-console.log(props.recipe)
+
 
 
 const handleClick = () =>  {

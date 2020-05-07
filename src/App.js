@@ -187,10 +187,15 @@ addRecipe = (newRecipeState) => {
           />
   
   
-            <Route 
+            {/* <Route 
               exact
               path='/profile'
               render={props => <Profile {...props} appState={this.state} />}
+            /> */}
+
+            <Route 
+              path='/profile'
+              ccomponent={ProfileContainer}
             />
   
             <Route 

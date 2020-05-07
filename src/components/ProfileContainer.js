@@ -26,19 +26,32 @@ export default class ProfileContainer extends React.Component{
 
 
     render(){
+        console.log(this.state)
   
         return(
             <div>
                 <Switch>
                     <Route 
                     path="/recipes/:id"
+                    render={(props) => {
+                    const recipeId = props.match.params.id; 
+                    let recipe;
+                    this.state.myrecipes.forEach((array)=> {
+                        array.forEach((rec)=> {
+                            if (rec && rec.id === recipeId) {
+                                recipe = rec
+                            }
+                        })
+                    }) 
+                    return recipe ? <ProfileRecipeDetail recipe={recipe}/> : <h1>Loading...</h1>                   
+                        }}
                     />
 
-                    {/* <Route 
+                    <Route 
                     path="/profile"
-                    /> */}
-                </Switch>:
-                    Loading Recipes
+                    render={()=> <Profile recipes={this.state.myrecipes}/>}
+                    />
+                </Switch>
             </div>
         )
     }
