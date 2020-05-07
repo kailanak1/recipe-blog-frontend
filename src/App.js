@@ -195,7 +195,7 @@ addRecipe = (newRecipeState) => {
 
             <Route 
               path='/profile'
-              ccomponent={ProfileContainer}
+              component={ProfileContainer}
             />
   
             <Route 

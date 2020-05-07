@@ -16,9 +16,9 @@ export default class ProfileContainer extends React.Component{
       componentDidMount(){
        
         api.recipes.getRecipes().then(data => {
-            const filtered = (data.filter(recipe => recipe.user_id == this.props.appState.auth.user.id))
+            // const filtered = (data.filter(recipe => recipe.user_id == this.props.appState.auth.user.id))
             this.setState({
-                myrecipes: filtered
+                myrecipes: data
             })
         })
     }
@@ -27,6 +27,7 @@ export default class ProfileContainer extends React.Component{
 
     render(){
         console.log(this.state)
+        console.log(this.props)
   
         return(
             <div>

@@ -9,10 +9,28 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 const Profile = ({recipes}) => {
 
+    const handleClick = (recipeId) => {
+        console.log(recipeId)
+    }
+
+    const recipeMapper = () => {
+               return recipes.reverse().map((recipe, index)=> {
+                  return <div key={index}>
+                    <Card 
+                    id={recipe.id}
+                    onClick={() => handleClick(recipe.id)}
+                    >
+                        {recipe.title}
+                  </Card>
+                </div>
+
+               })
+               
+        }
    
 
     return(
-        <div>Hi</div>
+        <div>{recipeMapper()}</div>
     )
 
 }
