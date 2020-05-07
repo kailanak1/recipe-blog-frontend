@@ -13,6 +13,9 @@ import Profile from './components/Profile';
 import SignUp from './components/Signup';
 import RecipeList from './components/RecipeList';
 
+//containers 
+import ProfileContainer from './components/ProfileContainer'
+
 //redux
 import store from './redux/store';
 import {Provider} from 'react-redux';

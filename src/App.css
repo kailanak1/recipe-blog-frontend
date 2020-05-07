@@ -57,18 +57,17 @@
   padding: 2px;
 }
 
-input[type=text] {
+/* input[type=text] {
   box-sizing: border-box;
   margin:10px 0;
-  border-radius: 10px;
+
 }
 
 input[type=text]:focus, text:focus {
-  box-shadow: 0 0 5px #78C2AD;
+  box-shadow: 0 0 5px rgb(194, 120, 172);
   padding: 3px 0px 3px 3px;
   margin: 5px 1px 3px 0px;
-  border-radius: 5px;
-  border: 1px #78C2AD;
+  border: 1px rgba(194, 120, 172, 0.105);
 }
 
 input[type=textarea]{
@@ -78,5 +77,6 @@ input[type=textarea]{
 }
 
 input:focus {
-  box-shadow: #78C2AD;
-}
+  box-shadow: rgb(194, 120, 157);
+} */
+
