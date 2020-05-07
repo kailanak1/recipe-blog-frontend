@@ -53,7 +53,7 @@ const ProfileRecipeDetail = props => {
         {/* <Button variant="primary" onClick = {handleClick} style={{ marginRight: "auto" }}>Go Back</Button>
         </div> */}
     <div key={id}>
-        <Card.Title style={{fontSize:'50px' }}>{props.recipe.title}</Card.Title>
+        <Card.Title style={{fontSize:'50px' }}>{props.title}</Card.Title>
         <Card.Text>{props.recipe.summary ? <div>{props.recipe.summary}</div> : "No summary given"}</Card.Text>
 
         <br></br>
