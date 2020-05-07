@@ -37,12 +37,12 @@ export default class ProfileContainer extends React.Component{
                     render={(props) => {
                     const recipeId = props.match.params.id; 
                     let recipe;
-                    this.state.myrecipes.forEach((array)=> {
-                        array.forEach((rec)=> {
+                    this.state.myrecipes.forEach(rec => {
+                       
                             if (rec && rec.id === recipeId) {
                                 recipe = rec
                             }
-                        })
+                       
                     }) 
                     return recipe ? <ProfileRecipeDetail recipe={recipe}/> : <h1>Loading...</h1>                   
                         }}

@@ -11,7 +11,7 @@ const ProfileRecipeDetail = props => {
 
 
      const ingredientsMapper = () => {
-        let ingredients = props.recipe.ingredients
+        let ingredients = props.ingredients
         if(ingredients){
             return ingredients.map((ingredient, index) => {
                 return <ListGroup>
@@ -22,7 +22,7 @@ const ProfileRecipeDetail = props => {
     }
 
       const stepsMapper = () => {
-        let steps = props.recipe.steps
+        let steps = props.steps
         if(steps){
             return steps.map((step, index) => {
                 return <ListGroup>
@@ -35,13 +35,18 @@ const ProfileRecipeDetail = props => {
     }
 
      const tagsMapper = () => {
-        let tags = props.recipe.tags
+        let tags = props.tags
         if(tags){
             return tags.map((tag)=> {
                 return `${tag.name} `
             })
         }
     }
+
+    const handleClick = () => {
+        props.history.push('/profile')
+    }
+
     
     
 
@@ -50,23 +55,23 @@ const ProfileRecipeDetail = props => {
 
         <Card style={{width: '36rem'}}>
         <div className="btn-lef" style={{display: 'flex'}}>
-        {/* <Button variant="primary" onClick = {handleClick} style={{ marginRight: "auto" }}>Go Back</Button>
-        </div> */}
+        <Button variant="primary" onClick = {handleClick} style={{ marginRight: "auto" }}>Go Back</Button>
+        </div>
     <div key={id}>
         <Card.Title style={{fontSize:'50px' }}>{props.title}</Card.Title>
-        <Card.Text>{props.recipe.summary ? <div>{props.recipe.summary}</div> : "No summary given"}</Card.Text>
+        <Card.Text>{props.summary ? <div>{props.summary}</div> : "No summary given"}</Card.Text>
 
         <br></br>
 
        
 
-        {props.recipe.ingredients ? <div>{ingredientsMapper()}</div> : "No ingredients written"}
+        {props.ingredients ? <div>{ingredientsMapper()}</div> : "No ingredients written"}
         <br></br>
        
-        {props.recipe.steps ? <div>{stepsMapper()}</div> : "No steps given"}
+        {props.steps ? <div>{stepsMapper()}</div> : "No steps given"}
         <br></br>
 
-        <small>Tags: {props.recipe.tags ?  <div>{tagsMapper()}</div> : "No tags"  }</small>
+        <small>Tags: {props.tags ?  <div>{tagsMapper()}</div> : "No tags"  }</small>
 
         <br></br>
         <br></br>
@@ -77,7 +82,7 @@ const ProfileRecipeDetail = props => {
         <br></br>
         
     </div>
-    </div>
+    
     </Card>
     </div>
     )

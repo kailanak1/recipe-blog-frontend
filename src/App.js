@@ -211,10 +211,10 @@ addRecipe = (newRecipeState) => {
               render={props => <RecipeList {...props} appState={this.state}/>}
             />
 
-            <Route
+            {/* <Route
             path='/recipes/:id'
             render={(props) => <ProfileRecipeDetail {...props} recipes={this.state.recipes}/>}
-          />
+          /> */}
   
         </div>
         </Router>
