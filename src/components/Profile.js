@@ -5,23 +5,32 @@ import RecipeProfileDetail from './ProfileRecipeDetail'
 import Card from 'react-bootstrap/Card'
 import EditForm from './EditForm'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 
 const Profile = ({recipes}) => {
 
-    const handleClick = (recipeId) => {
-        console.log(recipeId)
-    }
+    // const handleClick = (recipeId) => {
+    //     console.log(recipeId)
+    // }
 
     const recipeMapper = () => {
                return recipes.reverse().map((recipe, index)=> {
                   return <div key={index}>
+                      
                     <Card 
                     id={recipe.id}
-                    onClick={() => handleClick(recipe.id)}
+                    style={{width: '18rem', border: "1px solid black", cursor: 'pointer', alignSelf: 'center', boxShadow: '5px .2em 10px #888888'}} 
+                    // onClick={() => handleClick(recipe.id)}
                     >
-                        {recipe.title}
+                       <Card.Body>
+                           <Card.Title><Link to={`/recipes/${recipe.id}`}>{recipe.title}</Link></Card.Title>
+                           <Card.Subtitle className="meta text-wrap">
+                                     {!!recipe.summary ? recipe.summary : "No summary given"}
+                                 </Card.Subtitle>
+                       </Card.Body> 
                   </Card>
+                  
                 </div>
 
                })
