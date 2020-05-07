@@ -13,6 +13,7 @@ import Profile from './components/Profile';
 import SignUp from './components/Signup';
 import RecipeList from './components/RecipeList';
 import ProfileRecipeDetail from './components/ProfileRecipeDetail'
+import RecipeDetail from './components/RecipeDetail'
 
 //containers 
 import ProfileContainer from './components/ProfileContainer'
@@ -36,7 +37,8 @@ export default class App extends React.Component {
         errors: false, 
         recipes: [], 
         myrecipes: [],
-        newestThree: []
+        newestThree: [], 
+        selectedRecipe: ""
       }
     };
   }
@@ -60,6 +62,14 @@ export default class App extends React.Component {
     })
   }
 
+  selectedRecipe = (recId) => {
+    api.recipes.getRecipes().then(data => {
+      let found = data.find(recId)
+      this.setState({
+        selectedRecipe: found
+      })
+      )}
+  }
 
   createUser = (event) => {
     let newUser = {
@@ -187,12 +197,6 @@ addRecipe = (newRecipeState) => {
             render={props => <AddRecipeForm {...props} onAddRecipe={this.addRecipe}/>}
           />
   
-  
-            {/* <Route 
-              exact
-              path='/profile'
-              render={props => <Profile {...props} appState={this.state} />}
-            /> */}
 
             <Route 
               path='/profile'
@@ -211,9 +215,9 @@ addRecipe = (newRecipeState) => {
               render={props => <RecipeList {...props} appState={this.state}/>}
             />
 
-            <Route
+          <Route
             path='/recipes/:id'
-            render={(props) => <RecipeDetail {...props} recipes={this.state.recipes}/>}
+            render={(props) => <ProfileRecipeDetail {...props} recipes={this.state.recipes}/>}
           />
   
         </div>

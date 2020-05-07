@@ -5,94 +5,71 @@ import ListGroup from 'react-bootstrap/ListGroup'
 
 
 
-const ProfileRecipeDetail = props => {
-    const id = props.match.params.id
+export default class ProfileRecipeDetail extends React.Component {
+
+    constructor(){
+        super()
+        // this.state ={
+        //     recipe: 
+        // }
+            
+    }
+    // const id = props.match.params.id
 
    
+    // getRecipe = () => {
+    //     filter= 
+    // }
 
+    //  const ingredientsMapper = () => {
+    //     let ingredients = props.ingredients
+    //     if(ingredients){
+    //         return ingredients.map((ingredient, index) => {
+    //             return <ListGroup>
+    //                 <ListGroup.Item key={index}>{`${ingredient.amount} ${ingredient.name}`}</ListGroup.Item>
+    //             </ListGroup>
+    //         })
+    //     }
+    // }
 
-     const ingredientsMapper = () => {
-        let ingredients = props.ingredients
-        if(ingredients){
-            return ingredients.map((ingredient, index) => {
-                return <ListGroup>
-                    <ListGroup.Item key={index}>{`${ingredient.amount} ${ingredient.name}`}</ListGroup.Item>
-                </ListGroup>
-            })
-        }
-    }
+    //   const stepsMapper = () => {
+    //     let steps = props.steps
+    //     if(steps){
+    //         return steps.map((step, index) => {
+    //             return <ListGroup>
+    //                 <br></br>
+    //                 <ListGroup.Item key={index}>{`Step ${index+1}. ${step.step_summary}`}</ListGroup.Item>
+    //                 <br></br>
+    //             </ListGroup>
+    //         })
+    //     } 
+    // }
 
-      const stepsMapper = () => {
-        let steps = props.steps
-        if(steps){
-            return steps.map((step, index) => {
-                return <ListGroup>
-                    <br></br>
-                    <ListGroup.Item key={index}>{`Step ${index+1}. ${step.step_summary}`}</ListGroup.Item>
-                    <br></br>
-                </ListGroup>
-            })
-        } 
-    }
+    //  const tagsMapper = () => {
+    //     let tags = props.tags
+    //     if(tags){
+    //         return tags.map((tag)=> {
+    //             return `${tag.name} `
+    //         })
+    //     }
+    // }
 
-     const tagsMapper = () => {
-        let tags = props.tags
-        if(tags){
-            return tags.map((tag)=> {
-                return `${tag.name} `
-            })
-        }
-    }
-
-    const handleClick = () => {
-        props.history.push('/profile')
-    }
+    // const handleClick = () => {
+    //     props.history.push('/profile')
+    // }
 
     
     
-
+    render(){
+        console.log(this.props)
     return(
-        
-        <div>
-           <div>Hi</div>
-        <Card style={{width: '36rem'}}>
-        <div className="btn-lef" style={{display: 'flex'}}>
-        <Button variant="primary" onClick = {handleClick} style={{ marginRight: "auto" }}>Go Back</Button>
-        </div>
-    <div key={id}>
-        <Card.Title style={{fontSize:'50px' }}>{props.title}</Card.Title>
-        <Card.Text>{props.summary ? <div>{props.summary}</div> : "No summary given"}</Card.Text>
-
-        <br></br>
-
-       
-
-        {props.ingredients ? <div>{ingredientsMapper()}</div> : "No ingredients written"}
-        <br></br>
-       
-        {props.steps ? <div>{stepsMapper()}</div> : "No steps given"}
-        <br></br>
-
-        <small>Tags: {props.tags ?  <div>{tagsMapper()}</div> : "No tags"  }</small>
-
-        <br></br>
-        <br></br>
-
-        {/* <Button onClick={() => editRecipe(props.recipe.id)}>Edit</Button>
-      <Button variant="warning" onClick={() => deleteRecipe(props.recipe.id)}>Delete</Button> */}
-
-        <br></br>
-        
-    </div>
-    
-    </Card>
-    </div>
+        <div>Hi</div>
     )
-
+    }
 
 
 }
-export default ProfileRecipeDetail 
+
 
 
 

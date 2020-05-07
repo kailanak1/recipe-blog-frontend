@@ -95,7 +95,7 @@ class RecipeList extends React.Component{
 
 
     render(){
-     
+        console.log("the recipe list")
         return(
             <div>
                 <h1>Recipes</h1>
