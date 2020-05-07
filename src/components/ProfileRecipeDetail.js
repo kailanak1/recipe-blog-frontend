@@ -5,9 +5,10 @@ import ListGroup from 'react-bootstrap/ListGroup'
 
 
 
-
 const ProfileRecipeDetail = props => {
     const id = props.match.params.id
+
+   
 
 
      const ingredientsMapper = () => {
@@ -51,8 +52,9 @@ const ProfileRecipeDetail = props => {
     
 
     return(
+        
         <div>
-
+           <div>Hi</div>
         <Card style={{width: '36rem'}}>
         <div className="btn-lef" style={{display: 'flex'}}>
         <Button variant="primary" onClick = {handleClick} style={{ marginRight: "auto" }}>Go Back</Button>

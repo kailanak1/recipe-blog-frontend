@@ -35,11 +35,12 @@ export default class ProfileContainer extends React.Component{
                     <Route 
                     path="/recipes/:id"
                     render={(props) => {
+                        console.log(props)
                     const recipeId = props.match.params.id; 
                     let recipe;
                     this.state.myrecipes.forEach(rec => {
                        
-                            if (rec && rec.id === recipeId) {
+                            if (rec && rec.id == recipeId) {
                                 recipe = rec
                             }
                        
