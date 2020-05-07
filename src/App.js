@@ -12,6 +12,7 @@ import AddRecipeForm from './components/AddRecipeForm';
 import Profile from './components/Profile';
 import SignUp from './components/Signup';
 import RecipeList from './components/RecipeList';
+import ProfileRecipeDetail from './components/ProfileRecipeDetail'
 
 //containers 
 import ProfileContainer from './components/ProfileContainer'
@@ -209,6 +210,11 @@ addRecipe = (newRecipeState) => {
               path='/recipes'
               render={props => <RecipeList {...props} appState={this.state}/>}
             />
+
+            <Route
+            path='/recipes/:id'
+            render={(props) => <ProfileRecipeDetail {...props} recipes={this.state.recipes}/>}
+          />
   
         </div>
         </Router>
