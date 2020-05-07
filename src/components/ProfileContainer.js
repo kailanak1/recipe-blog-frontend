@@ -34,9 +34,9 @@ export default class ProfileContainer extends React.Component{
                     path="/recipes/:id"
                     />
 
-                    <Route 
+                    {/* <Route 
                     path="/profile"
-                    />
+                    /> */}
                 </Switch>:
                     Loading Recipes
             </div>

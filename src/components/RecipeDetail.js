@@ -49,9 +49,13 @@ const tagsMapper = () => {
     }
 }
 
-const favoriteRecipe = (recipeId) => {
-    props.onFavoriteRecipe(recipeId)
+const makeBig = () => {
+    
 }
+
+// const favoriteRecipe = (recipeId) => {
+//     props.onFavoriteRecipe(recipeId)
+// }
 
 
 return(
@@ -60,6 +64,7 @@ return(
     <Card style={{width: '36rem'}}>
         <div className="btn-lef" style={{display: 'flex'}}>
         <Button variant="primary" onClick = {handleClick} style={{ marginRight: "auto" }}>Go Back</Button>
+        <Button variant="primary" onClick = {makeBig} style={{ marginLeft: "auto" }}>Increase Font Size</Button>
         </div>
     <div key={props.recipe.id}>
         <Card.Title style={{fontSize:'50px' }}>{props.recipe.title}</Card.Title>
@@ -75,7 +80,7 @@ return(
    
 
         <small>Tags: {props.recipe.tags ?  <div>{tagsMapper()}</div> : "No tags"  }</small>
-        <Button onClick={() => favoriteRecipe(props.recipe.id)}>Favorite</Button>
+        {/* <Button onClick={() => favoriteRecipe(props.recipe.id)}>Favorite</Button> */}
         <br></br>
         <br></br>
 
