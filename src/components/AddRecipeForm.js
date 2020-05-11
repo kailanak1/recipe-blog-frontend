@@ -3,10 +3,6 @@ import React, {useReducer, useState} from 'react'
 
 import Button from 'react-bootstrap/Button';
 
-
-
-
-
 class AddRecipeForm extends React.Component {
     constructor(){
         super()
@@ -208,6 +204,8 @@ class AddRecipeForm extends React.Component {
       minWidth: "250px", 
       borderRadius: "10px"
   } 
+
+  console.log(this.state)
   
   return (
     <div className="row">

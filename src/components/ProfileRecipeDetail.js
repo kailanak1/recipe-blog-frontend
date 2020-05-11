@@ -29,10 +29,10 @@ const stepsMapper = () => {
     let steps = props.recipe.steps
     if(steps){
         return steps.map((step, index) => {
-            return <ListGroup>
-                <br></br>
+            return <ListGroup key={index}>
+              
                 <ListGroup.Item key={index}>{`Step ${index+1}. ${step.step_summary}`}</ListGroup.Item>
-                <br></br>
+            
             </ListGroup>
         })
     } 

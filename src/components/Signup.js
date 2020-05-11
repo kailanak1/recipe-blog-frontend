@@ -8,30 +8,6 @@ import { postUser } from "../redux";
 
 class Signup extends React.Component{
 
-// constructor(){
-//     super();
-//     this.state={
-//         username: '',
-//         password: ''
-//     }
-// }
-
-
-    // handleSubmit = (event) => {
-    //     let obj = {username: event.target.username.value, password: event.target.password.value}
-    //     event.preventDefault();
-    //     this.props.onAddUser(obj);
-
-    //     this.props.history.push('/landing')
-    // }
-
-    // handleChange = event => {
-    //     this.setState({
-    //         username: event.target.value,
-    //         password: event.target.value
-    //     });
-    // }
-
     handleSubmit = event => {
         event.preventDefault()
         this.props.onCreateUser(event)
