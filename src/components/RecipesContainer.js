@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { api } from "../services/api";
-import RecipeList from './components/RecipeList'
+import RecipeList from './RecipeList';
 
 
 class RecipesContainer extends Component { 

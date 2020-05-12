@@ -12,9 +12,11 @@ import AddRecipeForm from './components/AddRecipeForm';
 import Profile from './components/Profile';
 import SignUp from './components/Signup';
 import RecipeList from './components/RecipeList';
+import RecipeDetail from './components/RecipeDetail';
 
 //containers 
 import ProfileContainer from './components/ProfileContainer'
+import RecipesContainer from './components/RecipesContainer'
 
 //redux
 import store from './redux/store';
@@ -198,12 +200,21 @@ addRecipe = (newRecipeState) => {
               path='/signup'
               render={props => <SignUp {...props} appState={this.state} onCreateUser={this.createUser} />}
             />
-
+{/* 
           <Route 
               exact
               path='/recipes'
               render={props => <RecipeList {...props} appState={this.state}/>}
+            /> */}
+
+            <Route 
+            path='/recipes/:id'
+            render={props => <RecipeDetail {...props}/>}
             />
+
+            <Route 
+            path='/recipes'
+            component={RecipesContainer} />
   
         </div>
         </Router>
