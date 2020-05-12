@@ -61,6 +61,7 @@ class RecipeList extends React.Component{
 
     
     recipeMapper = () => {
+        if (this.state.recipes.length){
         return this.state.recipes.reverse().map((meal, index) => {
            
             return (
@@ -89,6 +90,9 @@ class RecipeList extends React.Component{
                 </Fragment>
             )
         })
+    } else {
+        return "No Recipes"
+    }
     }
 
 
