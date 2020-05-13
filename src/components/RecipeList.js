@@ -1,8 +1,11 @@
 import React, {Fragment} from 'react'
 import { api } from '../services/api'
 import  RecipeDetail  from './RecipeDetail'
-import { Link } from 'react-router-dom'
+import { Link, useHistory, Redirect } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
+
+
+
 
 class RecipeList extends React.Component{
     constructor(){
@@ -13,6 +16,8 @@ class RecipeList extends React.Component{
             meal: ''
         }
     }
+
+
 
 
     //map over the recipes, display the first few 
@@ -49,12 +54,14 @@ class RecipeList extends React.Component{
       }
 
       handleClick = (meal) => {
-        this.setState(prev => {
-            return {
-              detail: !prev.detail,
-              meal: meal
-            }
-          }, () => this.showDetail)
+          this.props.history.push(`/recipes/${meal.id}`)
+        //  return  <Redirect to={`/recipes/${meal.id}`}/>
+        // this.setState(prev => {
+        //     return {
+        //       detail: !prev.detail,
+        //       meal: meal
+        //     }
+        //   }, () => this.showDetail)
         }
 
        
