@@ -29,10 +29,14 @@ class Profile extends React.Component{
     }
 
     filtermyRecipes = () => {
+        if (this.state.recipes.length){
         const filtered = (this.state.recipes.filter(recipe => recipe.user_id == this.props.appState.auth.user.id))
         this.setState({
             myrecipes: filtered
         })
+    } else {
+        return null
+    }
     }
 
     goBack = () => {
@@ -74,6 +78,7 @@ class Profile extends React.Component{
 
 
     recipeMapper = () => {
+        if (this.state.recipes.length){
         const filtered = (this.state.recipes.filter(recipe => recipe.user_id == this.props.appState.auth.user.id))
         return filtered.reverse().map((meal, index) => {
            
@@ -98,6 +103,9 @@ class Profile extends React.Component{
                 </Fragment>
             )
         })
+    }else{
+        return "You have no recipes yet"
+    }
     }
 
     handleDeletedRecipe = (id) => {

@@ -204,6 +204,11 @@ addRecipe = (newRecipeState) => {
               path='/recipes'
               render={props => <RecipeList {...props} appState={this.state}/>}
             />
+
+            <Route 
+            path='/recipes/:id'
+            render={props => <ProfileRecipeDetail {...props} appState={this.state}/>}
+            />
   
         </div>
         </Router>

@@ -13,7 +13,7 @@ class Signup extends React.Component{
         this.props.onCreateUser(event)
         event.target.username.value = ''
         event.target.password.value = ''
-        this.props.history.push('/landing')
+        this.props.history.push('/login')
     }
 
     render(){
