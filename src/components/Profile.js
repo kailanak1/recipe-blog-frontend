@@ -7,37 +7,59 @@ import EditForm from './EditForm'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 
+
 class Profile extends React.Component{
+    _isMounted = false;
     constructor(){
         super()
         this.state = {
             recipes:[], 
+            loaded: false,
             detail: false,
             myrecipes: [], 
-            form: false
+            form: false, 
+            user: ""
         }
     }
 
-    //add a render conditional here
 
     componentDidMount(){
+        console.log("component mounting")
+        this._isMounted = true
         api.recipes.getRecipes().then(data => {
+            if(this._isMounted){
             this.setState({
                 recipes: data
-            },()=> this.filtermyRecipes())
+            })
+        }
         }) 
     }
 
-    filtermyRecipes = () => {
-        if (this.state.recipes.length){
-        const filtered = (this.state.recipes.filter(recipe => recipe.user_id == this.props.appState.auth.user.id))
-        this.setState({
-            myrecipes: filtered
-        })
-    } else {
-        return null
+    static getDerivedStateFromProps(props, prevState){
+        console.log(props.appState.auth.user.id)
+        if(prevState.user !== props.appState.auth.user.id){
+        return{
+            user: props.appState.auth.user.id
+        }
+        }
     }
-    }
+
+      componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+    // filtermyRecipes = () => {
+    //     console.log("filtering recipes")
+    //     if (this.state.recipes.length){
+    //     const filtered = (this.state.recipes.filter(recipe => recipe.user_id == this.props.appState.auth.user.id))
+    //     this.setState({
+    //         myrecipes: filtered
+    //     })
+    //     console.log("filtered")
+    // } else {
+    //     return "You have no recipes. Try adding some, or refreshing the page."
+    // }
+    // }
 
     goBack = () => {
         this.setState(prev => {
@@ -78,8 +100,17 @@ class Profile extends React.Component{
 
 
     recipeMapper = () => {
-        if (this.state.recipes.length){
-        const filtered = (this.state.recipes.filter(recipe => recipe.user_id == this.props.appState.auth.user.id))
+        let user = null
+        if (this.state.user){
+            user = this.state.user 
+        } else {
+            user = this.props.appState.auth.user.id
+        }
+        console.log(user)
+        if (this.state.recipes.length && user){
+            console.log(this.state.recipes)
+            console.log("mapping through recipes")
+        const filtered = (this.state.recipes.filter(recipe => recipe.user_id == user))
         return filtered.reverse().map((meal, index) => {
            
             return (
@@ -103,8 +134,6 @@ class Profile extends React.Component{
                 </Fragment>
             )
         })
-    }else{
-        return "You have no recipes yet"
     }
     }
 
@@ -147,7 +176,7 @@ class Profile extends React.Component{
 
     render(){
      
-
+        console.log(this.props)
         return(
             <div>
                 <h1>{this.props.appState.auth.user.username}'s Recipes</h1>

@@ -78,7 +78,7 @@ const title = () => {
 
 const summary = () => {
     let recipe = getRecipe()
-    if (recipe.summary.length){
+    if (recipe.summary){
     return recipe.summary
     } else{
         return "No summary given"
