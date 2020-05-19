@@ -12,7 +12,8 @@ import AddRecipeForm from './components/AddRecipeForm';
 import Profile from './components/Profile';
 import SignUp from './components/Signup';
 import RecipeList from './components/RecipeList';
-import RecipeDetail from './components/RecipeDetail'
+import RecipeDetail from './components/RecipeDetail';
+import EditForm from './components/EditForm';
 
 //containers 
 import ProfileContainer from './components/ProfileContainer'
@@ -207,8 +208,14 @@ addRecipe = (newRecipeState) => {
             />
 
             <Route 
+            exact
             path='/recipes/:id'
             render={props => <RecipeDetail {...props} appState={this.state}/>}
+            />
+
+            <Route 
+            path='/recipes/edit/:id'
+            render={props => <EditForm {...props} appState={this.state}/>}
             />
   
         </div>

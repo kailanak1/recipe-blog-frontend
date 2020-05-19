@@ -67,9 +67,9 @@ const makeBig = () => {
     
 }
 
-const favoriteRecipe = (recipeId) => {
-    props.onFavoriteRecipe(recipeId)
-}
+// const favoriteRecipe = (recipeId) => {
+//     props.onFavoriteRecipe(recipeId)
+// }
 
 const title = () => {
     let recipe = getRecipe()
@@ -87,11 +87,8 @@ const summary = () => {
 
 
 return(
-    // !props.recipe ? <div></div> : 
 
     <div>
-
-
 
      <Card style={{width: '36rem'}}>
         <div className="btn-lef" style={{display: 'flex'}}>
@@ -112,7 +109,7 @@ return(
    
 
      <small>Tags: <div>{tagsMapper()}</div></small> 
-         <Button onClick={() => favoriteRecipe(props.match.params.id)}>Favorite</Button> 
+         {/* <Button onClick={() => favoriteRecipe(props.match.params.id)}>Favorite</Button>  */}
         <br></br>
         <br></br>
 

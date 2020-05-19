@@ -18,10 +18,6 @@ class RecipeList extends React.Component{
     }
 
 
-
-
-    //map over the recipes, display the first few 
-
     componentDidMount(){
         api.recipes.getRecipes().then(data => {
             this.setState({

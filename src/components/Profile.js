@@ -4,6 +4,7 @@ import { api } from '../services/api'
 import RecipeProfileDetail from './ProfileRecipeDetail'
 import Card from 'react-bootstrap/Card'
 import EditForm from './EditForm'
+import RecipeDetail from './RecipeDetail'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 
@@ -89,12 +90,7 @@ class Profile extends React.Component{
         }
 
         handleEdit = (meal) => {
-            this.setState(prev => {
-                return {
-                    form: !prev.form, 
-                    meal: meal 
-                }
-            }, () => this.showForm)
+            this.props.history.push(`/recipes/edit/${meal.id}`)
         }
 
 
