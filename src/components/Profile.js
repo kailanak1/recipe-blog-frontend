@@ -90,7 +90,8 @@ class Profile extends React.Component{
         }
 
         handleEdit = (meal) => {
-            this.props.history.push(`/recipes/edit/${meal.id}`)
+            console.log(meal)
+            this.props.history.push(`/recipes/edit/${meal}`)
         }
 
 

@@ -43,7 +43,13 @@ const login = data => {
             return res.json()
         })
     }
-
+    
+    const getRecipeDetail = (id) => {
+      return fetch (`${API_ROOT}/recipes/${id}`)
+      .then(res => {
+          return res.json()
+      })
+  }
 
 
     
@@ -55,6 +61,7 @@ const login = data => {
           createUser
       },
       recipes: {
-          getRecipes
+          getRecipes,
+          getRecipeDetail
       }
   }
