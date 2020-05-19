@@ -134,27 +134,28 @@ addRecipe = (newRecipeState) => {
     })
   }
 
-  // editRecipe = (recipe_id) => {
-  //   let editedRecipe = {
-  //     title: event.target.title.value, 
-  //     summary: event.target.summary.value,
-  //     ingredient_name: event.target.ingredients.value,
-  //     rec_steps: event.target.steps.value,
-  //     rec_tags: event.target.tags.value,
-  //     user_id: this.state.auth.user.id
-  //     //use token user_id
-  //   }
-  //   fetch(`http://localhost:3000/api/v1/recipes/${recipe_id}`,{
-  //     method: "PUTS", 
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     Accept: "application/json",
-  //     Authorization: localStorage.getItem("token")
-  //     },
-  //    }).then(resp => resp.json())
-  //       .then(data => 
-  //         console.log(data))
-  // }
+  editRecipe = (recipe_id, editRecipeState) => {
+    let editedRecipe = {
+      title: editRecipeState.title, 
+      summary: editRecipeState.summary,
+      ingredient_name: editRecipeState.ingredients,
+      rec_steps: editRecipeState.steps,
+      rec_tags: editRecipeState.tags,
+      user_id: this.state.auth.user.id
+      //use token user_id
+    }
+    return fetch(`http://localhost:3000/api/v1/recipes/${recipe_id}`,{
+      method: "PATCH", 
+      headers: {
+        "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: localStorage.getItem("token")
+      },
+      body: JSON.stringify(editedRecipe)
+     }).then(resp => resp.json())
+        .then(data => 
+          console.log(data))
+  }
 
 
 
@@ -215,7 +216,7 @@ addRecipe = (newRecipeState) => {
 
             <Route 
             path='/recipes/edit/:id'
-            render={props => <EditForm {...props} appState={this.state}/>}
+            render={props => <EditForm {...props} appState={this.state} onEditRecipe = {this.editRecipe}/>}
             />
   
         </div>
