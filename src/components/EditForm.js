@@ -224,7 +224,7 @@ class EditForm extends React.Component {
                 className="form-group">
             
                 <input className="mb-3"
-                    value={this.state.ingredients[index].name}
+                    value={this.state.tags[index].name}
                     onChange={(e) => this.handleTagChange(e, index)}
                     placeholder="Name"
                     name="name"
