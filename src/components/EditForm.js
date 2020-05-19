@@ -46,13 +46,6 @@ class EditForm extends React.Component {
         })
     }
 
-    handleTagChange = (event) => {
-        let recTags = event.target.value.split(', ')
-        this.setState({
-            tags: recTags
-        })
-    }
-
     addIngredientInputs = () => {
         this.setState((prev) => {
             return {
@@ -202,6 +195,73 @@ class EditForm extends React.Component {
         })
       }
 
+
+      //Tags Mapper 
+
+      addTagInputs = () => {
+        this.setState((prev) => {
+          return {
+            ...prev,
+            tags: [...prev.tags, ""],
+          };
+        });
+      };
+      renderTagInputs = () => {
+        const textInputStyle = {
+            border: 'none',
+            padding: '2p 2px',
+            borderBottom: '1px solid gray', 
+    
+            "&:focus":{
+              borderRadius: '5px', 
+              border: '1px #78C2AD', 
+              boxShadow: '#78C2AD'
+            }
+          }
+        return this.state.tags.map((tag, index) => {
+          return (
+            <div key={`name ${index}`} 
+                className="form-group">
+            
+                <input className="mb-3"
+                    value={this.state.ingredients[index].name}
+                    onChange={(e) => this.handleTagChange(e, index)}
+                    placeholder="Name"
+                    name="name"
+                    style={textInputStyle}
+                />
+              <button className="btn btn-secondary" type="button" onClick={(e)=>this.removeTagInput(e,index)}>{`Delete Tag ${index+1}`}</button>
+            </div>
+          );
+        });
+      };
+      handleTagChange = (e, tagIndex) => {
+        let newTag = e.target.value;
+        this.setState((prev) => {
+          return {
+            ...prev,
+            tags: prev.tags.map((tag, index) => {
+              if (index == tagIndex) {
+                return { ...tag, name: newTag};
+              } 
+              return tag;
+            }),
+          };
+        });
+      };
+
+      removeTagInput = (e, tagIndex) => {
+        e.preventDefault()
+    
+        this.setState({
+          tags: this.state.tags.filter((tag, removedTag) => removedTag !== tagIndex )
+        })
+      }
+
+
+
+      //handleSubmit
+
     handleSumbit = (e) => {
       console.log(this.state.title)
         e.preventDefault()
@@ -279,13 +339,10 @@ class EditForm extends React.Component {
               <button type="button" className="btn btn-primary" onClick={()=> this.addStepInputs()}>+ Add Step</button>
             </div>
             <div class="form-group">
+                {/* Tags */}
               <label>Tags</label>
-              <input 
-              onChange={this.handleTagChange } 
-              name="tags" 
-                value={this.state.tags}
-              placeholder="separated by a comma"
-              style={{border:"none", padding:"2px 2px", borderBottom:"1px solid gray", minWidth:"400 px"}}></input>
+              {this.renderTagInputs()}
+            <button type="button" className="btn btn-primary" onClick={()=> this.addTagInputs()}>+ Add Tag</button>
             </div>
             <input type="submit" className="btn btn-secondary"></input>
           </fieldset>
