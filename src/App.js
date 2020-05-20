@@ -135,6 +135,7 @@ addRecipe = (newRecipeState) => {
   }
 
   editRecipe = (recipe_id, editRecipeState) => {
+    console.log("got to edit")
     let editedRecipe = {
       title: editRecipeState.title, 
       summary: editRecipeState.summary,
@@ -143,7 +144,9 @@ addRecipe = (newRecipeState) => {
       rec_tags: editRecipeState.tags,
       user_id: this.state.auth.user.id
       //use token user_id
+    
     }
+    console.log(editedRecipe)
     return fetch(`http://localhost:3000/api/v1/recipes/${recipe_id}`,{
       method: "PATCH", 
       headers: {

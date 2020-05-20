@@ -27,7 +27,6 @@ class EditForm extends React.Component {
         const id = this.props.match.params.id
         api.recipes.getRecipeDetail(id)
         .then(response => {
-            console.log(response)
             this.setState({
                 title: response.recipe.title,
                 main_pic: response.recipe.main_pic,
@@ -263,10 +262,12 @@ class EditForm extends React.Component {
       //handleSubmit
 
     handleSumbit = (e) => {
-      console.log(this.state.title)
+      console.log("handle submit")
         e.preventDefault()
         let recId = this.props.match.params.id
         // if(this.state.title.length > 1){
+          console.log(recId)
+          console.log(this.state)
             this.props.onEditRecipe(recId, this.state)
             this.props.history.push('/profile')
         // }else{

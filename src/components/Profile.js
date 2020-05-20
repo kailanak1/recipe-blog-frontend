@@ -25,7 +25,6 @@ class Profile extends React.Component{
 
 
     componentDidMount(){
-        console.log("component mounting")
         this._isMounted = true
         api.recipes.getRecipes().then(data => {
             if(this._isMounted){
@@ -37,7 +36,6 @@ class Profile extends React.Component{
     }
 
     static getDerivedStateFromProps(props, prevState){
-        console.log(props.appState.auth.user.id)
         if(prevState.user !== props.appState.auth.user.id){
         return{
             user: props.appState.auth.user.id
@@ -90,7 +88,6 @@ class Profile extends React.Component{
         }
 
         handleEdit = (meal) => {
-            console.log(meal)
             this.props.history.push(`/recipes/edit/${meal}`)
         }
 
@@ -152,9 +149,9 @@ class Profile extends React.Component{
         
     }
 
-    showForm = () => {
-        return <EditForm />
-    }
+    // showForm = () => {
+    //     return <EditForm />
+    // }
 
     profileRender = () => {
         if (!!this.state.detail && !this.state.form){
@@ -172,8 +169,6 @@ class Profile extends React.Component{
 
 
     render(){
-     
-        console.log(this.props)
         return(
             <div>
                 <h1>{this.props.appState.auth.user.username}'s Recipes</h1>
