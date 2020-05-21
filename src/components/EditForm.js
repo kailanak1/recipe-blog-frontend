@@ -54,8 +54,11 @@ class EditForm extends React.Component {
           });
     }
     removeIngredientInput = (e, ingredientIndex) => {
+      console.log(e.target)
       e.preventDefault()
-   
+      if (e.target.id){
+        this.handleIngrDelete(e.target.id)
+      }
       this.setState({
         ingredients: this.state.ingredients.filter((ingredient, removedIngredient) => removedIngredient !== ingredientIndex )
       })
@@ -75,7 +78,7 @@ class EditForm extends React.Component {
       }
         return this.state.ingredients.map((ingredient, index) => {
           return (
-       
+              <div >
                 <div key={`name ${index}`} 
                 className="form-group">
             
@@ -94,9 +97,10 @@ class EditForm extends React.Component {
                     name="amount"
                     style={textInputStyle}
                 />
+                </div>
                 <br></br>
             
-                <Button variant="outline-secondary" onClick={(e)=>this.removeIngredientInput(e,index)}>{this.state.ingredients[index].name ? `Delete ${this.state.ingredients[index].name}` : `Delete Ingredient`}</Button>
+                <Button variant="outline-secondary" id={ingredient.id} onClick={(e)=>this.removeIngredientInput(e,index)}>{this.state.ingredients[index].name ? `Delete ${this.state.ingredients[index].name}` : `Delete Ingredient`}</Button>
               
             </div>
           );
@@ -274,6 +278,12 @@ class EditForm extends React.Component {
         //     window.alert("Please add a title")
         // }
     }
+
+    handleIngrDelete = (id) => {
+      fetch(`http://localhost:3000/api/v1/ingredients/${id}`, {
+          method: "DELETE"
+        })
+      }
 
   render(){
       

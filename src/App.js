@@ -139,10 +139,9 @@ addRecipe = (newRecipeState) => {
     let editedRecipe = {
       title: editRecipeState.title, 
       summary: editRecipeState.summary,
-      recipes_attributes: [
-      {ingredients: editRecipeState.ingredients},
-      {steps: editRecipeState.steps},
-      {tags: editRecipeState.tags}],
+      ingredients: editRecipeState.ingredients,
+      steps: editRecipeState.steps,
+      tags: editRecipeState.tags,
       user_id: this.state.auth.user.id
       //use token user_id
     
