@@ -281,7 +281,12 @@ class EditForm extends React.Component {
 
     handleIngrDelete = (id) => {
       fetch(`http://localhost:3000/api/v1/ingredients/${id}`, {
-          method: "DELETE"
+          method: "DELETE", 
+          headers: {
+            "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: localStorage.getItem("token")
+          },
         })
       }
 
