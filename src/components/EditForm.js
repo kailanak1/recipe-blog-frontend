@@ -192,7 +192,9 @@ class EditForm extends React.Component {
 
       removeStepInput = (e, stepIndex) => {
         e.preventDefault()
-    
+        if (e.target.id){
+          this.handleStepDelete(e.target.id)
+        }
         this.setState({
           steps: this.state.steps.filter((step, removedStep) => removedStep !== stepIndex )
         })
@@ -255,7 +257,9 @@ class EditForm extends React.Component {
 
       removeTagInput = (e, tagIndex) => {
         e.preventDefault()
-    
+        if (e.target.id){
+          this.handleTagDelete(e.target.id)
+        }
         this.setState({
           tags: this.state.tags.filter((tag, removedTag) => removedTag !== tagIndex )
         })
@@ -266,12 +270,11 @@ class EditForm extends React.Component {
       //handleSubmit
 
     handleSumbit = (e) => {
-      console.log("handle submit")
+    
         e.preventDefault()
         let recId = this.props.match.params.id
         // if(this.state.title.length > 1){
-          console.log(recId)
-          console.log(this.state)
+         
             this.props.onEditRecipe(recId, this.state)
             this.props.history.push('/profile')
         // }else{
@@ -289,6 +292,31 @@ class EditForm extends React.Component {
           },
         })
       }
+
+      handleStepDelete = (id) => {
+        fetch(`http://localhost:3000/api/v1/steps/${id}`, {
+            method: "DELETE", 
+            headers: {
+              "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: localStorage.getItem("token")
+            },
+          })
+        }
+
+        //may not want to delete tags once tags are changed on the db side
+
+        handleTagDelete = (id) => {
+          fetch(`http://localhost:3000/api/v1/tags/${id}`, {
+              method: "DELETE", 
+              headers: {
+                "Content-Type": "application/json",
+              Accept: "application/json",
+              Authorization: localStorage.getItem("token")
+              },
+            })
+          }
+  
 
   render(){
       
