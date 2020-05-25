@@ -14,11 +14,11 @@ An app that just shows you recipes, not blogs.
 
 The user can make an account, write recipes, and delete them. 
 
-![Recipe List] (/images/Screen Shot 2020-05-25 at 4.17.44 PM.png)
+![Recipe List](images/Screen%20Shot%202020-05-25%20at%204.17.44%20PM.png)
 
 Dynamically controlled forms make it easy to add and edit your recipes.
 
-![Dynamically controlled recipe form](/images/Screen Shot 2020-05-25 at 4.19.21 PM.png)
+![Dynamically controlled recipe form](images/Screen%20Shot%202020-05-25%20at%204.19.21%20PM.png)
 
 ## Installation 
 
