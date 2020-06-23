@@ -1,10 +1,4 @@
-import {
-  
-    FETCH_USERS_REQUEST,
-    FETCH_USERS_SUCCESS,
-    FETCH_USERS_FAILURE,
-    POST_USER,
-  } from "./userTypes";
+
 
 const API_ROOT = `http://localhost:3000/api/v1`;
 
