@@ -68,7 +68,6 @@ export default class App extends React.Component {
       password: event.target.password.value,
     }
     api.auth.createUser(newUser).then(res => {
-      console.log(res)
       if (res.error){
        this.setState({errors: true})
      } else {    
@@ -80,9 +79,9 @@ export default class App extends React.Component {
 
 
 login = data => {
-  console.log(data)
+ 
   const updatedState = { user: {user_id: data.user.id,  username: data.user.username}};
-  console.log(updatedState)
+ 
   localStorage.setItem("token", data.jwt);
   this.setState({ 
     auth: updatedState
@@ -108,9 +107,8 @@ addRecipe = (newRecipeState) => {
     steps: newRecipeState.steps,
     tags: newRecipeState.tags,
     user_id: this.state.auth.user.id
-  //   //use token user_id
   }
-  console.log(newRecipeState)
+
   
   return fetch("http://localhost:3000/api/v1/recipes", {
     method: "POST",
@@ -123,7 +121,7 @@ addRecipe = (newRecipeState) => {
   })
   .then(resp => resp.json())
   .then(data => 
-    console.log(data))
+    data)
   }
 
   spliceForLanding = () => {
@@ -135,7 +133,7 @@ addRecipe = (newRecipeState) => {
   }
 
   editRecipe = (recipe_id, editRecipeState) => {
-    console.log("got to edit")
+    
     let editedRecipe = {
       title: editRecipeState.title, 
       summary: editRecipeState.summary,
@@ -143,10 +141,10 @@ addRecipe = (newRecipeState) => {
       steps: editRecipeState.steps,
       tags: editRecipeState.tags,
       user_id: this.state.auth.user.id
-      //use token user_id
+     
     
     }
-    console.log(editedRecipe)
+ 
     return fetch(`http://localhost:3000/api/v1/recipes/${recipe_id}`,{
       method: "PATCH", 
       headers: {
@@ -157,7 +155,7 @@ addRecipe = (newRecipeState) => {
       body: JSON.stringify(editedRecipe)
      }).then(resp => resp.json())
         .then(data => 
-          console.log(data))
+          (data))
   }
 
 
