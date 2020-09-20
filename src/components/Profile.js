@@ -47,18 +47,6 @@ class Profile extends React.Component{
     this._isMounted = false;
   }
 
-    // filtermyRecipes = () => {
-    //     console.log("filtering recipes")
-    //     if (this.state.recipes.length){
-    //     const filtered = (this.state.recipes.filter(recipe => recipe.user_id == this.props.appState.auth.user.id))
-    //     this.setState({
-    //         myrecipes: filtered
-    //     })
-    //     console.log("filtered")
-    // } else {
-    //     return "You have no recipes. Try adding some, or refreshing the page."
-    // }
-    // }
 
     goBack = () => {
         this.setState(prev => {
@@ -100,10 +88,9 @@ class Profile extends React.Component{
         } else {
             user = this.props.appState.auth.user.id
         }
-        console.log(user)
+   
         if (this.state.recipes.length && user){
-            console.log(this.state.recipes)
-            console.log("mapping through recipes")
+          
         const filtered = (this.state.recipes.filter(recipe => recipe.user_id == user))
         return filtered.reverse().map((meal, index) => {
            

@@ -37,9 +37,6 @@ class RecipeList extends React.Component{
        
     }
 
-    // handleFavorite = () => {
-    //     console.log("rec was favorited")
-    // }
 
 
     showDetail = () => {
@@ -51,13 +48,6 @@ class RecipeList extends React.Component{
 
       handleClick = (meal) => {
           this.props.history.push(`/recipes/${meal.id}`)
-        //  return  <Redirect to={`/recipes/${meal.id}`}/>
-        // this.setState(prev => {
-        //     return {
-        //       detail: !prev.detail,
-        //       meal: meal
-        //     }
-        //   }, () => this.showDetail)
         }
 
        

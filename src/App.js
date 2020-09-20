@@ -37,7 +37,6 @@ export default class App extends React.Component {
         errors: false, 
         recipes: [], 
         myrecipes: [],
-        newestThree: []
       }
     };
   }
@@ -121,16 +120,9 @@ addRecipe = (newRecipeState) => {
   })
   .then(resp => resp.json())
   .then(data => 
-    data)
+    console.log(data))
   }
 
-  spliceForLanding = () => {
-    let newest = this.state.recipes.splice(-1, 3)
-    
-    this.setState({
-      newestThree: newest
-    })
-  }
 
   editRecipe = (recipe_id, editRecipeState) => {
     

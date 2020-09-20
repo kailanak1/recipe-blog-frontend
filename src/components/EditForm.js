@@ -54,7 +54,7 @@ class EditForm extends React.Component {
           });
     }
     removeIngredientInput = (e, ingredientIndex) => {
-      console.log(e.target)
+     
       e.preventDefault()
       if (e.target.id){
         this.handleIngrDelete(e.target.id)

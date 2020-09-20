@@ -7,8 +7,6 @@ import {useHistory} from 'react-router-dom';
 
 
 
-const ProfileRecipeDetail = props => {
-console.log(props.recipe)
 
 
 const handleClick = () =>  {

@@ -146,7 +146,7 @@ class AddRecipeForm extends React.Component {
           <fieldset>
               <textarea
                 placeholder={`Step${index+1}`}
-                // style={textareastyle}
+                
                 name="rec_steps"
                 id="textArea"
                 className="form-control"
@@ -183,14 +183,10 @@ class AddRecipeForm extends React.Component {
       }
 
     handleSumbit = (e) => {
-      console.log(this.state.title)
         e.preventDefault()
-        // if(this.state.title.length > 1){
             this.props.onAddRecipe(this.state)
             this.props.history.push('/')
-        // }else{
-        //     window.alert("Please add a title")
-        // }
+     
     }
 
   render(){
@@ -205,7 +201,7 @@ class AddRecipeForm extends React.Component {
       borderRadius: "10px"
   } 
 
-  console.log(this.state)
+
   
   return (
     <div className="row">

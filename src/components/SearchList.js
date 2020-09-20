@@ -36,9 +36,7 @@ class RecipeList extends React.Component{
        
     }
 
-    // handleFavorite = () => {
-    //     console.log("rec was favorited")
-    // }
+
 
 
     showDetail = () => {

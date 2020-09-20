@@ -77,7 +77,7 @@ const headers = () => {
   }
   
   export const postUser = (newUser) => {
-      console.log(newUser)
+ 
     return (dispatch) => {
       dispatch(fetchUserRequest());
       return fetch(`${API_ROOT}/signup`, {
@@ -89,7 +89,7 @@ const headers = () => {
       })
         .then(res => res.json())
         .then((user) => {
-            console.log(user.error)
+            
           if (user.error) {
             dispatch(fetchUserFailure(user.error));
           } else {
